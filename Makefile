@@ -50,6 +50,7 @@ menu:
 	  $(GCL) http://git.suckless.org/dmenu ;\
 	  $(PATCH) -d dmenu < .diff/dmenu-fuzzyhighlight-5.3.diff ;\
 	  $(PATCH) -d dmenu < .diff/dmenu-fuzzymatch-5.3.diff ;\
+	  $(PATCH) -d dmenu < .diff/dmenu-caseinsensitive-20200523-db6093f.diff ;\
 	  $(WGET) "https://tools.suckless.org/dmenu/scripts/dmenu_run_with_command_history/dmenu_run_history" -O dmenu/dmenu_run ;\
 	  }
 	$(CP) .h/dmenu.h dmenu/config.h
