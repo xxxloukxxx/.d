@@ -1,15 +1,16 @@
 INSTALL = sudo apt-get -y -qq install
-UPDATE = sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
-GCL = git clone --quiet
-M = sudo make PREFIX=/usr -s -k
-RM = rm -fr
 CP = cp -fr
-SUDOCP = sudo cp -Pfr
 LN = ln -f
-PATCH = patch -F 3 -c -u -s
-WGET = wget --quiet
+RM = rm -fr
 MD = sudo mkdir -p
+WGET = wget --quiet
+GCL = git clone --quiet
+PATCH = patch -F 3 -c -u -s
+SPATCH = sudo patch -F 3 -c -u -s
+SCP = sudo cp -Pfr
 SUDOSH = sudo sh -c
+UPDATE = sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
+M = sudo make PREFIX=/usr -s -k
 
 # -------------------------------------------
 
@@ -25,9 +26,9 @@ install:
 	  }
 	$(UPDATE)
 	$(INSTALL) vim make git nnn gcc build-essential cmake ninja-build locales-all curl wget fzf tmux silversearcher-ag
-	$(INSTALL) x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3
-	$(INSTALL) fonts-agave
-	$(SUDOCP) .bin/* /usr/bin/
+	$(INSTALL) x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave greetd
+	$(SCP) .bin/* /usr/bin/
+	$(SPATCH) -u /etc/greetd/config.toml < .diff/greetd-patch.diff
 
 x: install
 	$(INSTALL) xinit xorg xdotool numlockx

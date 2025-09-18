@@ -171,7 +171,7 @@ Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
 Plug 'chrisbra/csv.vim'
 Plug 'dohsimpson/vim-macroeditor'
-Plug 'dracula/vim' , {'as': 'dracula'}
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -200,7 +200,7 @@ set t_Co=256
 set termguicolors
 try
     " colorscheme retrobox
-    colorscheme dracula
+    colorscheme ayu
 catch
     colorscheme default
 endtr

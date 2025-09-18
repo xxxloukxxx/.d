@@ -10,11 +10,11 @@ static const char *fonts[] = {"agave:size=14"};
 static const char *prompt = NULL; /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
     /*     fg         bg       */
-    [SchemeNorm] = {"#f8f8f2", "#000000"},
-    [SchemeSel] = {"#50fa7b", "#383a46"},
+    [SchemeNorm] = {"#bbbbbb", "#222222"},
+    [SchemeSel] = {"#eeeeee", "#002244"},
     [SchemeOut] = {"#000000", "#00ffff"},
-	[SchemeSelHighlight] = { "#ffc978", "#3388AA" },
-	[SchemeNormHighlight] = { "#ffc978", "#555555" },
+	[SchemeSelHighlight] = { "#ccb867", "#335577" },
+	[SchemeNormHighlight] = { "#ccb867", "#555555" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines = 0;

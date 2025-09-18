@@ -8,19 +8,18 @@ static const int topbar = 0;            /* 0 means bottom bar */
 static const int focusonwheel = 0;
 static const char *fonts[] = {"agave:size=14"};
 static const char dmenufont[] = "agave:size=14";
-static const char col_gray1[] = "#000000";
-// static const char col_gray1[] = "#282a36";
-static const char col_gray2[] = "#ffb86c";
-static const char col_gray3[] = "#f8f8f2";
-// static const char col_gray3[] = "#ff79c6";
-static const char col_gray4[] = "#50fa7b";
-// static const char col_gray4[] = "#ffb86c";
-static const char col_cyan[] = "#383a46";
-// static const char col_cyan[] = "#282a36";
+
+static const char col_gray1[] = "#222222";
+static const char col_gray2[] = "#444444";
+static const char col_gray3[] = "#bbbbbb";
+static const char col_gray4[] = "#eeeeee";
+static const char col_cyan[] = "#002244";
+static const char red[] = "#990000";
+
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {col_gray3, col_gray1, col_cyan},
-    [SchemeSel] = {col_gray4, col_cyan, col_gray2},
+    [SchemeSel] = {col_gray4, col_cyan, red},
 };
 
 /* tagging */
