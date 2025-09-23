@@ -1,0 +1,19 @@
+--- config.toml	2025-04-08 15:14:57.000000000 +0200
++++ config.toml.new	2025-09-18 18:44:20.396365042 +0200
+@@ -8,7 +8,7 @@
+ 
+ # `agreety` is the bundled agetty/login-lookalike. You can replace `/bin/sh`
+ # with whatever you want started, such as `sway`.
+-command = "/usr/sbin/agreety --cmd '${SHELL:-/bin/sh}'"
++command = "/usr/sbin/agreety --cmd startx"
+ # if using wlgreet
+ #command = "sway --config /etc/greetd/sway-config"
+ 
+@@ -16,3 +16,7 @@
+ # on the greeter. A graphical greeter may for example require the user to be
+ # in the `video` group.
+ user = "_greetd"
++
++[initial_session]
++command=startx
++user=cedric

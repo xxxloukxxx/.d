@@ -1,0 +1,13 @@
+#!/bin/sh
+choice=`/usr/bin/echo -e "Lock\nReboot\nShutdown" | dmenu`
+
+echo $choice
+
+# execute the choice in background
+case "$choice" in
+   Lock) slock & ;;
+   Reboot) sudo /usr/bin/systemctl reboot & ;;
+   Shutdown) sudo /usr/bin/systemctl poweroff & ;;
+   *) exit ;;
+esac
+

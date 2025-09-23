@@ -1,0 +1,12 @@
+#!/bin/bash
+choice=`/usr/bin/echo -e "Play\nStop\nNext\nPrev\nPlaylist" | dmenu`
+
+case "$choice" in
+   Play) /usr/bin/mpc play & ;;
+   Stop) /usr/bin/mpc stop & ;;
+   Next) usr/bin/mpc next & ;;
+   Prev) /usr/bin/mpc prev & ;;
+   Playlist) /usr/bin/dmpc_p & ;;
+   *) exit ;;
+esac
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+choice=`/usr/bin/echo -e "LEFT/RIGHT\nLEFT/(right)\n(left)/RIGHT" | dmenu`
+
+case "$choice" in
+   'LEFT/RIGHT')  /usr/bin/display-lr.sh & ;;
+   'LEFT/(right)') /usr/bin/display-l.sh & ;;
+   '(left)/RIGHT') /usr/bin/display-r.sh & ;;
+   *) exit ;;
+esac
+
+sleep 1
+
+/usr/bin/feh --randomize --bg-fill ~/.w
+
