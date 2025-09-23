@@ -15,6 +15,7 @@ install:
 	if ! grep -q startx /etc/greetd/config.toml; then \
 	  sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
 	  fi
+	mkdir -p ~/.config
 	cp -fr .config/dunst ~/.config/
 
 zsh:
