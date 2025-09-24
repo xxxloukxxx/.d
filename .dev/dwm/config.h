@@ -72,9 +72,9 @@ static const char* dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont
 static const char* termcmd[]   = { "st", NULL };
 static const char* dpowercmd[] = { "dpower", NULL };
 static const char* dmpccmd[]   = { "dmpc", NULL };
-static const char* upvol[]     = { "/usr/bin/setvolume", "up", NULL };
-static const char* downvol[]   = { "/usr/bin/setvolume", "down", NULL };
-static const char* mutevol[]   = { "/usr/bin/setvolume", "mute", NULL };
+static const char* upvol[]     = { "vol.sh", "up", NULL };
+static const char* downvol[]   = { "vol.sh", "dn", NULL };
+static const char* mutevol[]   = { "vol.sh", "mute", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char* scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x50", NULL };
 

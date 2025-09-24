@@ -10,7 +10,7 @@ install:
 	sudo apt-get -y -qq install vim make git nnn gcc build-essential cmake ninja-build locales-all \
 	  curl wget fzf tmux silversearcher-ag universal-ctags npm xinit xorg xdotool numlockx x11-utils arandr \
 	  libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave greetd \
-	  dunst pavucontrol pulseaudio pulseaudio-utils trash-cli
+	  dunst pavucontrol pulseaudio pulseaudio-utils trash-cli picom libxcb-util-dev
 	sudo cp -Pfr .bin/* /usr/bin/
 	if ! grep -q startx /etc/greetd/config.toml; then \
 	  sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
@@ -36,6 +36,7 @@ suckless: wm
 	sudo make PREFIX=/usr -s -k -C .dev/slock clean install
 	sudo make PREFIX=/usr -s -k -C .dev/noice clean install
 	sudo make PREFIX=/usr -s -k -C .dev/nnn clean install
+	sudo make PREFIX=/usr -s -k -C .dev/dwmblocks clean install
 
 wm:
 	sudo make PREFIX=/usr -s -k -C .dev/dwm clean install
@@ -51,6 +52,7 @@ clean:
 	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean
 	sudo make PREFIX=/usr -s -k -C .dev/noice clean
 	sudo make PREFIX=/usr -s -k -C .dev/nnn clean
+	sudo make PREFIX=/usr -s -k -C .dev/dwmblocks clean
 
 .SILENT:
 

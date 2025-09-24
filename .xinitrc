@@ -15,8 +15,9 @@ start() {
 	fi
 }
 
-start slstatus
+start picom --backend xrender
 start vesktop
+start dwmblocks
 
 sleep 1 && exec dwm
 
