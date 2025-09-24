@@ -17,8 +17,9 @@
 #define TRAILING_DELIMITER 0
 
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
-#define BLOCKS(X)              \
-    X(" ", "vol.sh", 0, 5) \
-    X("", "date '+%H:%M'", 20, 10)
+#define BLOCKS(X)                \
+    X (" ", "uptime -p", 60, 11) \
+    X ("", "vol.sh", 0, 5)       \
+    X ("", "date '+%H:%M'", 20, 10)
 
-#endif  // CONFIG_H
+#endif // CONFIG_H
