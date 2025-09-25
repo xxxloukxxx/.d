@@ -341,34 +341,34 @@ checkpatches:
 
 prepatch:
 ifeq ($(strip $(O_NAMEFIRST)),1)
-	patch --forward $(PATCH_OPTS) --strip=1 --input=$(NAMEFIRST)/mainline.diff
+	patch -s --forward $(PATCH_OPTS) --strip=1 --input=$(NAMEFIRST)/mainline.diff
 ifeq ($(strip $(O_GITSTATUS)),1)
-	patch --forward $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/namefirst.diff
+	patch -s --forward $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/namefirst.diff
 endif
 else ifeq ($(strip $(O_GITSTATUS)),1)
-	patch --forward $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/mainline.diff
+	patch -s --forward $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/mainline.diff
 endif
 ifeq ($(strip $(O_RESTOREPREVIEW)),1)
-	patch --forward $(PATCH_OPTS) --strip=1 --input=$(RESTOREPREVIEW)/mainline.diff
+	patch -s --forward $(PATCH_OPTS) --strip=1 --input=$(RESTOREPREVIEW)/mainline.diff
 endif
 ifeq ($(strip $(O_COLEMAK)),1)
-	patch --forward $(PATCH_OPTS) --strip=1 --input=$(COLEMAK)/mainline.diff
+	patch -s --forward $(PATCH_OPTS) --strip=1 --input=$(COLEMAK)/mainline.diff
 endif
 
 postpatch:
 ifeq ($(strip $(O_NAMEFIRST)),1)
 ifeq ($(strip $(O_GITSTATUS)),1)
-	patch --reverse $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/namefirst.diff
+	patch -s --reverse $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/namefirst.diff
 endif
-	patch --reverse $(PATCH_OPTS) --strip=1 --input=$(NAMEFIRST)/mainline.diff
+	patch -s --reverse $(PATCH_OPTS) --strip=1 --input=$(NAMEFIRST)/mainline.diff
 else ifeq ($(strip $(O_GITSTATUS)),1)
-	patch --reverse $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/mainline.diff
+	patch -s --reverse $(PATCH_OPTS) --strip=1 --input=$(GITSTATUS)/mainline.diff
 endif
 ifeq ($(strip $(O_RESTOREPREVIEW)),1)
-	patch --reverse $(PATCH_OPTS) --strip=1 --input=$(RESTOREPREVIEW)/mainline.diff
+	patch -s --reverse $(PATCH_OPTS) --strip=1 --input=$(RESTOREPREVIEW)/mainline.diff
 endif
 ifeq ($(strip $(O_COLEMAK)),1)
-	patch --reverse $(PATCH_OPTS) --strip=1 --input=$(COLEMAK)/mainline.diff
+	patch -s --reverse $(PATCH_OPTS) --strip=1 --input=$(COLEMAK)/mainline.diff
 endif
 
 skip: ;

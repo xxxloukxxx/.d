@@ -35,23 +35,23 @@ all: $(BUILD_DIR)/$(BIN)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c config.h
 	$Qmkdir -p $(@D)
-	$(PRINTF) "CC" $@
+	# $(PRINTF) "CC" $@
 	$Q$(COMPILE.c) -o $@ $<
 
 $(BUILD_DIR)/$(BIN): $(OBJS)
-	$(PRINTF) "LD" $@
+	# $(PRINTF) "LD" $@
 	$Q$(LINK.o) $^ $(LDLIBS) -o $@
 
 clean:
-	$(PRINTF) "CLEAN" $(BUILD_DIR)
+	# $(PRINTF) "CLEAN" $(BUILD_DIR)
 	$Q$(RM) $(BUILD_DIR)/*
 
 install: $(BUILD_DIR)/$(BIN)
-	$(PRINTF) "INSTALL" $(INSTALL_DIR)/$(BIN)
+	# $(PRINTF) "INSTALL" $(INSTALL_DIR)/$(BIN)
 	$Qinstall -D -m 755 $< $(INSTALL_DIR)/$(BIN)
 
 uninstall:
-	$(PRINTF) "RM" $(INSTALL_DIR)/$(BIN)
+	# $(PRINTF) "RM" $(INSTALL_DIR)/$(BIN)
 	$Q$(RM) $(INSTALL_DIR)/$(BIN)
 
 .PHONY: all clean install uninstall

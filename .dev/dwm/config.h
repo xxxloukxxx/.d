@@ -1,20 +1,26 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx = 1;  /* border pixel of windows */
-static const unsigned int snap     = 32; /* snap pixel */
-static const int showbar           = 1;  /* 0 means no bar */
-static const int topbar            = 0;  /* 0 means bottom bar */
-static const int focusonwheel      = 0;
-static const char* fonts[]         = { "agave:size=14" };
-static const char dmenufont[]      = "agave:size=14";
+static const unsigned int borderpx = 2;       /* border pixel of windows */
+static const unsigned int snap     = 32;      /* snap pixel */
+static const int showbar           = 1;       /* 0 means no bar */
+static const int topbar            = 0;       /* 0 means bottom bar */
+static const unsigned int systraypinning = 1; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft  = 0; /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing = 2; /* systray spacing */
+static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, */
+/*                                                  False: display systray on the last monitor*/
+static const int showsystray  = 1; /* 0 means no systray */
+static const int focusonwheel = 0;
+static const char* fonts[]    = { "agave:size=13" };
+static const char dmenufont[] = "agave:size=13";
 
 static const char col_gray1[] = "#161821";
 static const char col_gray3[] = "#5c5c5c";
 static const char col_gray4[] = "#ffffff";
 static const char col_cyan[]  = "#003c5c";
 // static const char col_red[]   = "#ff3c3c";
-static const char col_red[]   = "#ff0000";
+static const char col_red[] = "#ff0000";
 
 static const char* colors[][3] = {
     /*               fg         bg         border   */
@@ -31,7 +37,7 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    { "vesktop", NULL, NULL, 1 << 8, 0, 1 },
+    { "vesktop", NULL, NULL, 1 << 8, 0, 0 },
 };
 
 /* layout(s) */
