@@ -2,7 +2,7 @@ all: suckless clean
 
 everything: install suckless clean zsh dotfiles
 
-install:
+install: bin
 	[ -f /etc/sudoers.d/cedric ] || { \
 	  sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric' ;\
 	  }
@@ -14,9 +14,11 @@ install:
 	if ! grep -q startx /etc/greetd/config.toml; then \
 	  sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
 	  fi
-	sudo cp -Pfr .bin/* /usr/bin/
 	mkdir -p ~/.config
 	cp -fr .config/dunst ~/.config/
+
+bin:
+	sudo cp -Pfr .bin/* /usr/bin/
 
 zsh:
 	sudo apt-get -y -qq install zsh

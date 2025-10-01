@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -265,7 +266,7 @@ static void zoom(const Arg *arg);
 /* Mes patches */
 static unsigned int nexttag(void);
 static void viewnext(const Arg *arg);
-static void cyclelayout(const Arg *arg);
+/* static void cyclelayout(const Arg *arg); */
 
 
 /* variables */
@@ -838,7 +839,8 @@ drawbar(Monitor *m)
 
 	if ((w = m->ww - tw - stw - x) > bh) {
 		if (m->sel) {
-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+			/* drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]); */
+			drw_setscheme(drw, scheme[SchemeNorm]);
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
@@ -2383,7 +2385,7 @@ updatewmhints(Client *c)
 	}
 }
 
-/* --dwm-cyclelayouts ------ */
+/* --dwm-cyclelayouts ------ 
 
 void
 cyclelayout(const Arg *arg) {
@@ -2403,7 +2405,7 @@ if (arg->i > 0) {
 }
 }
 
-/* --dwm-cyclelayouts ------ */
+ --dwm-cyclelayouts ------ */
 
 
 /* --dwm-adjacenttag-skipvacant------ */

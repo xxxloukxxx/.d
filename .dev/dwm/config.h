@@ -52,7 +52,7 @@ static const Layout layouts[] = {
     /* symbol     arrange function */
     { "[]=", tile }, /* first entry is default */
     { "[M]", monocle },
-    { "[\\]", dwindle },
+    // { "[\\]", dwindle },
 };
 
 /* key definitions */
@@ -84,6 +84,7 @@ static const char* downvol[]   = { "vol.sh", "dn", NULL };
 static const char* mutevol[]   = { "vol.sh", "mute", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char* scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x50", NULL };
+static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
@@ -93,6 +94,7 @@ static const Key keys[] = {
     { MODKEY, XK_Return, spawn, { .v = termcmd } },
     { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } },
     { MODKEY, XK_m, spawn, { .v = dmpccmd } },
+    { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } },
 
     { MODKEY, XK_b, togglebar, { 0 } },
 
@@ -111,10 +113,11 @@ static const Key keys[] = {
     { MODKEY | ShiftMask, XK_Return, zoom, { 0 } },
 
     { MODKEY | ShiftMask, XK_c, killclient, { 0 } },
-    { MODKEY, XK_f, setlayout, { .v = &layouts[1] } },
+    // { MODKEY, XK_f, setlayout, { .v = &layouts[1] } },
+    { MODKEY, XK_f, setlayout, {0} },
 
     /* --- cyclelayouts --- */
-    { MODKEY, XK_g, cyclelayout, { .i = +1 } },
+    // { MODKEY, XK_g, cyclelayout, { .i = +1 } },
     /* --- cyclelayouts --- */
 
     { MODKEY, XK_p, focusmon, { .i = +1 } },
