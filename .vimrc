@@ -25,7 +25,7 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set nobackup
-" set scrolloff=999
+set scrolloff=999
 set nowrap
 set incsearch
 set ignorecase
@@ -180,6 +180,7 @@ Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -201,7 +202,8 @@ call plug#end()
 set t_Co=256
 set termguicolors
 try
-  colorscheme sorbet
+  colorscheme gotham
+  " colorscheme sorbet
 catch
   colorscheme desert
 endtr

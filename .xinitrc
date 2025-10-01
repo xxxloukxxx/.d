@@ -6,7 +6,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 xrdb -merge ~/.Xresources
 
 /usr/bin/display-lr.sh
-/usr/bin/xsetroot -solid "#161821"
 /usr/bin/feh --randomize --bg-fill ~/.w
 
 start() {
