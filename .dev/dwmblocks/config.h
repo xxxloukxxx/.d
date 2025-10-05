@@ -17,7 +17,7 @@
 #define TRAILING_DELIMITER 0
 
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
-#define BLOCKS(X)           \
+#define BLOCKS(X)          \
     X ("", "vol.sh", 0, 5) \
     X ("", "date '+%d-%m %H:%M'", 25, 10)
 

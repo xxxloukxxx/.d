@@ -20,7 +20,7 @@ static const char col_gray2[] = "#141416";
 static const char col_gray3[] = "#686868";
 static const char col_gray4[] = "#ffffff";
 static const char col_cyan[]  = "#090c2c";
-static const char col_red[] = "#7a0000";
+static const char col_red[]   = "#7a0000";
 
 static const char* colors[][3] = {
     /*               fg         bg         border   */
@@ -47,12 +47,10 @@ static const int resizehints    = 1;     /* 1 means respect size hints in tiled 
 static const int lockfullscreen = 1;     /* 1 will force focus on the fullscreen window */
 static const int refreshrate    = 120;   /* refresh rate (per second) for client move/resize */
 
-#include "fibonacci.c"
 static const Layout layouts[] = {
     /* symbol     arrange function */
     { "[]=", tile }, /* first entry is default */
     { "[M]", monocle },
-    // { "[\\]", dwindle },
 };
 
 /* key definitions */
@@ -83,8 +81,8 @@ static const char* upvol[]     = { "vol.sh", "up", NULL };
 static const char* downvol[]   = { "vol.sh", "dn", NULL };
 static const char* mutevol[]   = { "vol.sh", "mute", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char* scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x50", NULL };
-static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
+static const char* scratchpadcmd[] = { "st", "-t", scratchpadname, NULL };
+static const char* flameshotcmd[]  = { "flameshot", "gui", NULL };
 
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
@@ -113,12 +111,7 @@ static const Key keys[] = {
     { MODKEY | ShiftMask, XK_Return, zoom, { 0 } },
 
     { MODKEY | ShiftMask, XK_c, killclient, { 0 } },
-    // { MODKEY, XK_f, setlayout, { .v = &layouts[1] } },
-    { MODKEY, XK_f, setlayout, {0} },
-
-    /* --- cyclelayouts --- */
-    // { MODKEY, XK_g, cyclelayout, { .i = +1 } },
-    /* --- cyclelayouts --- */
+    { MODKEY, XK_f, setlayout, { 0 } },
 
     { MODKEY, XK_p, focusmon, { .i = +1 } },
     { MODKEY | ShiftMask, XK_p, tagmon, { .i = +1 } },
@@ -136,8 +129,6 @@ static const Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn, { .v = downvol } },
     { 0, XF86XK_AudioMute, spawn, { .v = mutevol } },
     /* --- volume --- */
-
-    { MODKEY | ShiftMask | ControlMask, XK_Escape, quit, { 0 } },
 
     TAGKEYS (XK_q, 0),
     TAGKEYS (XK_w, 1),
