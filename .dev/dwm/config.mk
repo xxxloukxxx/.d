@@ -36,4 +36,5 @@ LDFLAGS  = ${LIBS}
 #LDFLAGS = ${LIBS}
 
 # compiler and linker
+# CC = tcc
 CC = cc
