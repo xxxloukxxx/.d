@@ -43,5 +43,5 @@ esac
 
 pid=$(pidof dwmblocks)
 
-[ $pid -lt 1 ] || kill -39 $pid
+[ -z "$pid" ] || kill -39 $pid
 

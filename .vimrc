@@ -202,8 +202,9 @@ call plug#end()
 set t_Co=256
 set termguicolors
 try
-  colorscheme gotham
+  " colorscheme gotham
   " colorscheme sorbet
+  colorscheme wildcharm
 catch
   colorscheme desert
 endtr

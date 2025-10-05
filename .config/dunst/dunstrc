@@ -1,5 +1,5 @@
 [global]
-    font = "Agave 13"
+    font = "Agave 16"
     allow_markup = yes
     markup = full
     # format = "<span foreground='#bbbbbb'><b>%s</b></span>\n%b"

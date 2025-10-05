@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char* font   = "agave:size=13";
-static int borderpx = 0;
+static char* font   = "agave:size=16";
+static int borderpx = 4;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -94,13 +94,13 @@ char* termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.95;
+float alpha = 1;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char* colorname[] = {
     /* 8 normal colors */
     // "#161821", "#bb3c3c", "#3cbb3c", "#bbbb3c", "#3c3cbb", "#bb3cbb", "#3cbbbb", "#bbbbbb",
-    "#01060e", "#ea6c73", "#91B362", "#f9af4f", "#53bdfa", "#fae994", "#90e1c6", "#c7c7c7",
+    "#000000", "#ea6c73", "#91B362", "#f9af4f", "#53bdfa", "#fae994", "#90e1c6", "#c7c7c7",
 
     /* 8 bright colors */
     // "#5c5c5c", "#ff5c5c", "#5cff5c", "#ffff5c", "#5c5cff", "#ff5cff", "#5cffff", "#ffffff",

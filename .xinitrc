@@ -6,7 +6,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 xrdb -merge ~/.Xresources
 
 /usr/bin/display-lr.sh
-/usr/bin/feh --randomize --bg-fill ~/.w
+# /usr/bin/feh --randomize --bg-fill ~/.w
 
 start() {
 	if ! pgrep -f $1; then
@@ -14,7 +14,7 @@ start() {
 	fi
 }
 
-start picom --backend xrender
+start picom --backend glx
 start vesktop
 start dwmblocks
 

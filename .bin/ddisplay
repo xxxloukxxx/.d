@@ -8,7 +8,7 @@ case "$choice" in
    *) exit ;;
 esac
 
-sleep 1
+# sleep 1
 
-/usr/bin/feh --randomize --bg-fill ~/.w
+# /usr/bin/feh --randomize --bg-fill ~/.w
 
