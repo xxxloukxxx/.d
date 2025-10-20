@@ -9,7 +9,7 @@
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = false
-    origin = top-right
+    origin = top-left
     idle_threshold = 120
     monitor = 0
     sticky_history = yes
@@ -23,7 +23,8 @@
     frame_color = "#bbbbbb"
     frame_width = 1
     width = (0,800)
-    offset = 10x32
+    height = (0,800)
+    offset = 10x34
     progress_bar = true
     progress_bar_max_width = 300
     progress_bar_min_width = 300
@@ -33,7 +34,7 @@
     scale = 1
     min_icon_size = 64
     max_icon_size = 64
-    alignment = center
+    alignment = left
     vertical_alignment = center
 
 [urgency_low]
