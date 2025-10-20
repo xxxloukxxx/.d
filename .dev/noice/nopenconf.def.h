@@ -4,7 +4,7 @@
 struct rule rules[] = {
     { .regex = "\\.(avi|mp4|mkv|mp3|ogg|flac|mov)$", .file = "mpv", .argv = { "mpv", "{}", NULL } },
     { .regex = "\\.(lua|c|cpp|h|py|md|tex|txt)$", .file = "vim", .argv = { "vim", "{}", NULL } },
-    { .regex = "\\.(bmp|png|jpg|gif)$", .file = "qimgv", .argv = { "qimgv", "{}", NULL } },
+    { .regex = "\\.(bmp|png|jpeg|jpg|gif)$", .file = "qimgv", .argv = { "qimgv", "{}", NULL } },
     { .regex = "\\.(html|svg)$", .file = "firefox", .argv = { "firefox", "{}", NULL } },
     { .regex = "\\.(dxf)$", .file = "librecad", .argv = { "librecad", "{}", NULL } },
     { .regex = "\\.(pdf|ps)$", .file = "zathura", .argv = { "zathura --fork", "{}", NULL } },
