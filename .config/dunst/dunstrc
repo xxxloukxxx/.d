@@ -23,7 +23,7 @@
     frame_color = "#bbbbbb"
     frame_width = 1
     width = (0,800)
-    offset = 10x10
+    offset = 10x32
     progress_bar = true
     progress_bar_max_width = 300
     progress_bar_min_width = 300
@@ -37,19 +37,19 @@
     vertical_alignment = center
 
 [urgency_low]
-    background = "#161821"
+    background = "#000000"
     foreground = "#bbbbbb"
     highlight = "#003c5c"
     timeout = 2
 
 [urgency_normal]
-    background = "#161821"
+    background = "#000000"
     foreground = "#bbbbbb"
     highlight = "#003c5c"
     timeout = 4
 
 [urgency_critical]
-    background = "#161821"
+    background = "#000000"
     foreground = "#bbbbbb"
     highlight = "#003c5c"
     timeout = 7

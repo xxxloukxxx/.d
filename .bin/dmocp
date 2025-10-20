@@ -1,4 +1,5 @@
 #!/bin/bash
+
 choice=`/usr/bin/echo -e "Play\nStop\nNext\nPrev" | dmenu`
 
 case "$choice" in
@@ -8,4 +9,3 @@ case "$choice" in
    Prev) /usr/bin/mocp --previous ;;
    *) exit ;;
 esac
-
