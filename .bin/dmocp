@@ -1,0 +1,11 @@
+#!/bin/bash
+choice=`/usr/bin/echo -e "Play\nStop\nNext\nPrev" | dmenu`
+
+case "$choice" in
+   Play) /usr/bin/mocp --play ;;
+   Stop) /usr/bin/mocp --stop ;;
+   Next) /usr/bin/mocp --next ;;
+   Prev) /usr/bin/mocp --previous ;;
+   *) exit ;;
+esac
+

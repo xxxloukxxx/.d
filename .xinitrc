@@ -17,6 +17,7 @@ start() {
 start picom --backend glx
 start vesktop
 start dwmblocks
+start mocp -S
 
 sleep 1 && exec dwm
 
