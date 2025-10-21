@@ -78,6 +78,7 @@ static const char* dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont
 static const char* termcmd[]   = { "st", NULL };
 static const char* dpowercmd[] = { "dpower", NULL };
 static const char* dmocpcmd[]  = { "dmocp", NULL };
+static const char* dmocpinfo[]  = { "dmocpinfo", NULL };
 static const char* upvol[]     = { "vol.sh", "up", NULL };
 static const char* downvol[]   = { "vol.sh", "dn", NULL };
 static const char* mutevol[]   = { "vol.sh", "mute", NULL };
@@ -93,6 +94,7 @@ static const Key keys[] = {
     { MODKEY, XK_Return, spawn, { .v = termcmd } },
     { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } },
     { MODKEY, XK_m, spawn, { .v = dmocpcmd } },
+    { MODKEY | ShiftMask, XK_m, spawn, { .v = dmocpinfo } },
     { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } },
 
     { MODKEY, XK_b, togglebar, { 0 } },

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/bin/notify-send "`/usr/bin/mocp -i`"
+
