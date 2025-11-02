@@ -52,6 +52,9 @@ nnn:
 noice:
 	sudo make PREFIX=/usr -s -k -C .dev/noice clean install
 
+rootclock:
+	sudo make PREFIX=/usr -s -k -C .dev/rootclock clean install
+
 slock:
 	sudo make PREFIX=/usr -s -k -C .dev/slock clean install
 
@@ -59,13 +62,14 @@ st:
 	sudo make PREFIX=/usr -s -k -C .dev/st clean install
 
 clean:
-	sudo make PREFIX=/usr -s -k -C .dev/slock clean
-	sudo make PREFIX=/usr -s -k -C .dev/dwm clean
-	sudo make PREFIX=/usr -s -k -C .dev/st clean
 	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean
-	sudo make PREFIX=/usr -s -k -C .dev/noice clean
-	sudo make PREFIX=/usr -s -k -C .dev/nnn clean
+	sudo make PREFIX=/usr -s -k -C .dev/dwm clean
 	sudo make PREFIX=/usr -s -k -C .dev/dwmblocks clean
+	sudo make PREFIX=/usr -s -k -C .dev/nnn clean
+	sudo make PREFIX=/usr -s -k -C .dev/noice clean
+	sudo make PREFIX=/usr -s -k -C .dev/rootclock clean
+	sudo make PREFIX=/usr -s -k -C .dev/slock clean
+	sudo make PREFIX=/usr -s -k -C .dev/st clean
 
 .SILENT:
 

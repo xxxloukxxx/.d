@@ -121,6 +121,7 @@ alias l="ls -lh"
 alias bat="bat"
 alias du="du -h"
 alias df="df -h"
+alias bc="bc -ql"
 
 alias mk="make"
 

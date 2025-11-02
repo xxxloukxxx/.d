@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx = 3;       /* border pixel of windows */
+static const unsigned int borderpx = 2;       /* border pixel of windows */
 static const unsigned int gappx    = 0;       /* gap pixel between windows */
 static const unsigned int snap     = 32;      /* snap pixel */
 static const int showbar           = 1;       /* 0 means no bar */
@@ -72,19 +72,20 @@ static const Layout layouts[] = {
     }
 
 /* commands */
-static char dmenumon[2]        = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char* dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3,
-     "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char* termcmd[]   = { "st", NULL };
-static const char* dpowercmd[] = { "dpower", NULL };
-static const char* dmocpcmd[]  = { "dmocp", NULL };
-static const char* dmocpinfo[]  = { "dmocpinfo", NULL };
-static const char* upvol[]     = { "vol.sh", "up", NULL };
-static const char* downvol[]   = { "vol.sh", "dn", NULL };
-static const char* mutevol[]   = { "vol.sh", "mute", NULL };
-static const char scratchpadname[] = "scratchpad";
-static const char* scratchpadcmd[] = { "st", "-t", scratchpadname, NULL };
-static const char* flameshotcmd[]  = { "flameshot", "gui", NULL };
+static char dmenumon[2]           = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char* dmenucmd[]     = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3,
+        "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char* termcmd[]      = { "st", NULL };
+static const char* dpowercmd[]    = { "dpower", NULL };
+static const char* dmocpcmd[]     = { "dmocp", NULL };
+static const char* dmocpinfo[]    = { "dmocpinfo", NULL };
+static const char* upvol[]        = { "vol.sh", "up", NULL };
+static const char* downvol[]      = { "vol.sh", "dn", NULL };
+static const char* mutevol[]      = { "vol.sh", "mute", NULL };
+static const char spadname[]      = "spad";
+static const char* spadcmd[]      = { "st", "-t", spadname, NULL };
+static const char* spcalccmd[]    = { "st", "-t", spadname, "-g", "50x20", "-e", "bc", "-ql", NULL };
+static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
@@ -124,7 +125,8 @@ static const Key keys[] = {
     /* --- adajacent-tag --- */
 
     /* --- scratchpad --- */
-    { MODKEY, XK_Escape, togglescratch, { .v = scratchpadcmd } },
+    { MODKEY, XK_Escape, togglescratch, { .v = spadcmd } },
+    { MODKEY, XK_c, togglescratch, { .v = spcalccmd } },
     /* --- scratchpad --- */
 
     /* --- volume --- */
@@ -149,15 +151,15 @@ static const Key keys[] = {
  * ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
     /* click                event mask      button          function argument */
-    { ClkLtSymbol, 0, Button1, setlayout, { 0 } },
-    { ClkLtSymbol, 0, Button3, setlayout, { .v = &layouts[2] } },
+    // { ClkLtSymbol, 0, Button1, setlayout, { 0 } },
+    // { ClkLtSymbol, 0, Button3, setlayout, { .v = &layouts[2] } },
     { ClkWinTitle, 0, Button2, zoom, { 0 } },
-    { ClkStatusText, 0, Button2, spawn, { .v = termcmd } },
+    // { ClkStatusText, 0, Button2, spawn, { .v = termcmd } },
     { ClkClientWin, MODKEY, Button1, movemouse, { 0 } },
-    { ClkClientWin, MODKEY, Button2, togglefloating, { 0 } },
+    // { ClkClientWin, MODKEY, Button2, togglefloating, { 0 } },
     { ClkClientWin, MODKEY, Button3, resizemouse, { 0 } },
     { ClkTagBar, 0, Button1, view, { 0 } },
-    { ClkTagBar, 0, Button3, toggleview, { 0 } },
-    { ClkTagBar, MODKEY, Button1, tag, { 0 } },
-    { ClkTagBar, MODKEY, Button3, toggletag, { 0 } },
+    // { ClkTagBar, 0, Button3, toggleview, { 0 } },
+    // { ClkTagBar, MODKEY, Button1, tag, { 0 } },
+    // { ClkTagBar, MODKEY, Button3, toggletag, { 0 } },
 };

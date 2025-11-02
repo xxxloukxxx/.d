@@ -16,6 +16,7 @@ start() {
 
 start picom --backend glx
 start vesktop
+start rootclock
 start dwmblocks
 start mocp -S
 

@@ -79,8 +79,12 @@ drw_resize(Drw *drw, unsigned int w, unsigned int h)
 void
 drw_free(Drw *drw)
 {
-	XFreePixmap(drw->dpy, drw->drawable);
-	XFreeGC(drw->dpy, drw->gc);
+	if (!drw)
+		return;
+	if (drw->drawable)
+		XFreePixmap(drw->dpy, drw->drawable);
+	if (drw->gc)
+		XFreeGC(drw->dpy, drw->gc);
 	drw_fontset_free(drw->fonts);
 	free(drw);
 }
@@ -176,9 +180,6 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
 		die("error, cannot allocate color '%s'", clrname);
-
-	dest->pixel |= 0xff << 24;
-
 }
 
 /* Wrapper to create color schemes. The caller has to call free(3) on the
