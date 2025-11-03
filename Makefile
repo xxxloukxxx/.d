@@ -35,7 +35,7 @@ zsh:
 dotfiles:
 	ln -nf .xinitrc .vimrc .zshrc .gitconfig ~/
 
-suckless: dmenu dwm dwmblocks nnn noice slock st
+suckless: dmenu dwm dwmblocks nnn noice rootclock slock st
 
 dmenu:
 	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean install
