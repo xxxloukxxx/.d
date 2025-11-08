@@ -13,8 +13,10 @@ static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display sy
 /*                                                  False: display systray on the last monitor*/
 static const int showsystray  = 1; /* 0 means no systray */
 static const int focusonwheel = 0;
-static const char* fonts[]    = { "agave:size=16" };
-static const char dmenufont[] = "agave:size=16";
+static const char* fonts[]    = { "agave:size=12" };
+static const char dmenufont[] = "agave:size=12";
+// static const char* fonts[]    = { "agave:size=16" };
+// static const char dmenufont[] = "agave:size=16";
 
 static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#141416";
@@ -25,8 +27,10 @@ static const char col_red[]   = "#7a0000";
 
 static const char* colors[][3] = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_cyan, col_red },
+    [SchemeBar]    = { col_gray3, col_gray1, col_gray2 },
+    [SchemeBarSel] = { col_gray4, col_cyan, col_red },
+    [SchemeNorm]   = { col_gray3, col_gray1, col_gray2 },
+    [SchemeSel]    = { col_gray4, col_cyan, col_red },
 };
 
 /* tagging */
@@ -157,8 +161,7 @@ static const Button buttons[] = {
     // { ClkStatusText, 0, Button2, spawn, { .v = termcmd } },
     { ClkClientWin, MODKEY, Button1, movemouse, { 0 } },
     // { ClkClientWin, MODKEY, Button2, togglefloating, { 0 } },
-    { ClkClientWin, MODKEY, Button3, resizemouse, { 0 } },
-    { ClkTagBar, 0, Button1, view, { 0 } },
+    { ClkClientWin, MODKEY, Button3, resizemouse, { 0 } }, { ClkTagBar, 0, Button1, view, { 0 } },
     // { ClkTagBar, 0, Button3, toggleview, { 0 } },
     // { ClkTagBar, MODKEY, Button1, tag, { 0 } },
     // { ClkTagBar, MODKEY, Button3, toggletag, { 0 } },
