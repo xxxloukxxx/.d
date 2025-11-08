@@ -18,7 +18,8 @@ static const int block_padding_y = 24;
 
 /* Time (1st line) */
 static const char *time_fonts[] = {
-    "Agave:style=ExtraBold:size=120",
+    "Agave:style=ExtraBold:size=60",
+    // "Agave:style=ExtraBold:size=120",
     // "Inter:style=ExtraBold:size=120", "Liberation Sans:style=Bold:size=120",
     // "Noto Sans Math:style=Regular:size=120", /* fallback for ratio symbol */
 };
