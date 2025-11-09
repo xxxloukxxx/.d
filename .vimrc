@@ -104,7 +104,7 @@ nnoremap <silent> <C-l>              :nohlsearch<CR>
 nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
 nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>:enew<cr>
 nnoremap <silent> <leader>c          :close<CR>
-nnoremap <silent> <leader>p          <C-W><C-W>
+" nnoremap <silent> <leader>p          <C-W><C-W>
 nnoremap <silent> <leader><leader>,  5<C-W><
 nnoremap <silent> <leader><leader>.  5<C-W>>
 nnoremap <silent> <leader><leader>j  5<C-W>-
@@ -168,6 +168,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
       \| endif
 
 call plug#begin()
+Plug 'vim-scripts/YankRing.vim'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
 Plug 'chrisbra/csv.vim'
@@ -295,6 +296,14 @@ let g:vimtex_compiler_latexmk_engines = {
 
 let g:vimtex_view_general_viewer = 'zathura'
 
+" }}}
+
+""" Config for Yankring {{{
+let g:yankring_window_use_horiz = 1
+let g:yankring_window_use_bottom = 0
+let g:yankring_window_height = 16
+let g:yankring_history_file = '.yankring-history'
+nnoremap <silent> <leader>p :YRShow<CR>
 " }}}
 
 " }}}

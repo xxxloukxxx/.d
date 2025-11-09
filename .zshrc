@@ -12,7 +12,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="avit" # set by `omz`
 ZSH_THEME="minimal"
 
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -111,13 +110,16 @@ export FZF_DEFAULT_OPTS='--layout=reverse -x'
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND='ag -l -g ""'
 
+# alias ls='eza --color=auto'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 
-alias l="ls -lh"
+alias l="ls -l"
+alias ll="ls -l"
+alias la="ls -la"
 alias bat="bat"
 alias du="du -h"
 alias df="df -h"
