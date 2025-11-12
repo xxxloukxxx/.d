@@ -34,8 +34,9 @@ static const char* colors[][3] = {
 };
 
 /* tagging */
-static const char* tags[] = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O" };
+// static const char* tags[] = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O" };
 // static const char* tags[] = { "🅀", "🅆", "🄴", "🅁", "🅃", "🅈", "🅄", "🄸", "🄾" };
+static const char* tags[] = { "Q", "W", "E", "R", "T", "Y"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -43,7 +44,7 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    { "vesktop", NULL, NULL, 1 << 8, 0, 0 },
+    { "vesktop", NULL, NULL, 1 << 5, 0, 0 },
 };
 
 /* layout(s) */
