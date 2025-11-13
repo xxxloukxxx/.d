@@ -36,7 +36,7 @@ static const char* colors[][3] = {
 /* tagging */
 // static const char* tags[] = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O" };
 // static const char* tags[] = { "🅀", "🅆", "🄴", "🅁", "🅃", "🅈", "🅄", "🄸", "🄾" };
-static const char* tags[] = { "Q", "W", "E", "R", "T", "Y"};
+static const char* tags[] = { "Q", "W", "E", "R", "T"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -44,7 +44,7 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    { "vesktop", NULL, NULL, 1 << 5, 0, 0 },
+    { "vesktop", NULL, NULL, 1 << 4, 0, 0 },
 };
 
 /* layout(s) */
@@ -146,10 +146,10 @@ static const Key keys[] = {
     TAGKEYS (XK_e, 2),
     TAGKEYS (XK_r, 3),
     TAGKEYS (XK_t, 4),
-    TAGKEYS (XK_y, 5),
-    TAGKEYS (XK_u, 6),
-    TAGKEYS (XK_i, 7),
-    TAGKEYS (XK_o, 8),
+    // TAGKEYS (XK_y, 5),
+    // TAGKEYS (XK_u, 6),
+    // TAGKEYS (XK_i, 7),
+    // TAGKEYS (XK_o, 8),
 };
 
 /* button definitions */

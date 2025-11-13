@@ -814,6 +814,7 @@ drawbar(Monitor *m)
 
 	if (!m->showbar)
 		return;
+	
 
 	if(showsystray && m == systraytomon(m) && !systrayonleft)
 		stw = getsystraywidth();

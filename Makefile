@@ -39,27 +39,35 @@ suckless: dmenu dwm dwmblocks nnn noice rootclock slock st
 
 dmenu:
 	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean install
+	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean
 
 dwm:
 	sudo make PREFIX=/usr -s -k -C .dev/dwm clean install
+	sudo make PREFIX=/usr -s -k -C .dev/dwm clean
 
 dwmblocks:
 	sudo make PREFIX=/usr -s -k -C .dev/dwmblocks clean install
+	sudo make PREFIX=/usr -s -k -C .dev/dwmblocks clean
 
 nnn:
 	sudo make PREFIX=/usr -s -k -C .dev/nnn clean install
+	sudo make PREFIX=/usr -s -k -C .dev/nnn clean
 
 noice:
 	sudo make PREFIX=/usr -s -k -C .dev/noice clean install
+	sudo make PREFIX=/usr -s -k -C .dev/noice clean
 
 rootclock:
 	sudo make PREFIX=/usr -s -k -C .dev/rootclock clean install
+	sudo make PREFIX=/usr -s -k -C .dev/rootclock clean
 
 slock:
 	sudo make PREFIX=/usr -s -k -C .dev/slock clean install
+	sudo make PREFIX=/usr -s -k -C .dev/slock clean
 
 st:
 	sudo make PREFIX=/usr -s -k -C .dev/st clean install
+	sudo make PREFIX=/usr -s -k -C .dev/st clean
 
 clean:
 	sudo make PREFIX=/usr -s -k -C .dev/dmenu clean

@@ -1,5 +1,5 @@
 # paths
-PREFIX = /usr/local
+PREFIX = /usr
 
 # X11
 X11INC = /usr/X11R6/include
