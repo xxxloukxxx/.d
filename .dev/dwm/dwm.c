@@ -73,7 +73,7 @@
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 //enum { SchemeNorm, SchemeSel }; /* color schemes */
-enum { SchemeNorm, SchemeSel, SchemeBar, SchemeBarSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -806,23 +806,23 @@ dirtomon(int dir)
 void
 drawbar(Monitor *m)
 {
-	int x, w, tw = 0, stw = 0;
-	int boxs = drw->fonts->h / 9;
-	int boxw = drw->fonts->h / 6 + 2;
+	int x = 0, w = 0, tw = 0, stw = 0;
+	int boxs = drw->fonts->h / 8;
+	/* int boxs = drw->fonts->h / 9; */
+	int boxw = drw->fonts->h / 6 + 1;
+	/* int boxw = drw->fonts->h / 6 + 2; */
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
 	if (!m->showbar)
 		return;
-	
 
 	if(showsystray && m == systraytomon(m) && !systrayonleft)
 		stw = getsystraywidth();
 
+	drw_setscheme(drw, scheme[SchemeNorm]);
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
-		/* drw_setscheme(drw, scheme[SchemeNorm]); */
-		drw_setscheme(drw, scheme[SchemeBar]);
 		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
 		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
 	}
@@ -831,12 +831,10 @@ drawbar(Monitor *m)
 
 	// draw layout symbol
 	w = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeBar]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 	
 	// draw windows name
 	if ((w = m->ww - tw - stw - x) > bh) {
-		drw_setscheme(drw, scheme[SchemeBar]);
 		if (m->sel) {
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 		} else {
@@ -852,18 +850,21 @@ drawbar(Monitor *m)
 	}
 
 	x = (m->ww - bh * LENGTH(tags)) / 2 ;
-	drw_setscheme(drw, scheme[SchemeBar]);
 	drw_rect(drw, x-bh, 0, m->ww - tw - stw - x + bh, bh, 1, 1);
 	w = bh;
 	for (i = 0; i < LENGTH(tags); i++) {
-		drw_setscheme(drw, scheme[SchemeBar]);
+		drw_setscheme(drw, scheme[SchemeNorm]);
 		if (m->tagset[m->seltags] & 1 << i){
-			drw_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, m == selmon, urg & 1 << i);
+			drw_setscheme(drw, scheme[SchemeSel]);
+			drw_rect(drw, x + boxw, boxw, 2 * w - boxw * 2 , w - boxw * 2, m == selmon, urg & 1 << i);
+			if (occ & 1 << i)
+				drw_rect(drw, x + boxs - 1, boxs - 1, boxw + 1, boxw + 1, 1, urg & 1 << i);
+			x += w;
 		} else {
 			drw_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, urg & 1 << i);
+			if (occ & 1 << i)
+				drw_rect(drw, x + boxs - 1, boxs - 1, boxw + 1, boxw + 1, 1, urg & 1 << i);
 		}
-		if (occ & 1 << i)
-			drw_rect(drw, x + boxs, boxs, boxw + 1, boxw + 1, 1, urg & 1 << i);
 		x += w;
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
