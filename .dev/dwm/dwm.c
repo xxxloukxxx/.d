@@ -278,6 +278,7 @@ static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh;               /* bar height */
 static int lrpad;            /* sum of left and right padding for text */
+static float tag_ratio = 1.5;
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
@@ -471,9 +472,9 @@ buttonpress(XEvent *e)
 		focus(NULL);
 	}
 
-	x = (m->ww - bh * LENGTH(tags)) / 2 ;
+	x = (m->ww - bh*(LENGTH(tags)-1) - bh * tag_ratio) / 2 ;
 	int start_tag_x = x;
-	int end_tag_x = x + bh * LENGTH(tags);
+	int end_tag_x = x + bh * LENGTH(tags) + tag_ratio * bh;
 
 	if (ev->window == selmon->barwin) {
 		if (ev->x >= start_tag_x && ev->x < end_tag_x){
@@ -484,6 +485,7 @@ buttonpress(XEvent *e)
 		            break;
 		        }
 		        x += bh;
+				if (m->tagset[m->seltags] & 1 << i) x+= (tag_ratio - 1) * bh;
 		    }
 		}
 		else if (ev->x < TEXTW(selmon->ltsymbol))
@@ -809,7 +811,7 @@ drawbar(Monitor *m)
 	int x = 0, w = 0, tw = 0, stw = 0;
 	int boxs = drw->fonts->h / 8;
 	/* int boxs = drw->fonts->h / 9; */
-	int boxw = drw->fonts->h / 6 + 1;
+	int boxw = drw->fonts->h / 6;
 	/* int boxw = drw->fonts->h / 6 + 2; */
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
@@ -849,21 +851,17 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 
-	x = (m->ww - bh * LENGTH(tags)) / 2 ;
+	x = (m->ww - bh*(LENGTH(tags)-1) - bh * tag_ratio) / 2 ;
 	drw_rect(drw, x-bh, 0, m->ww - tw - stw - x + bh, bh, 1, 1);
-	w = bh;
+	w = bh; 
 	for (i = 0; i < LENGTH(tags); i++) {
-		drw_setscheme(drw, scheme[SchemeNorm]);
+		if (occ & 1 << i)
+			drw_rect(drw, x + boxs - 1, boxs - 1, 2*boxw, 2*boxw, 1, urg & 1 << i);
 		if (m->tagset[m->seltags] & 1 << i){
-			drw_setscheme(drw, scheme[SchemeSel]);
-			drw_rect(drw, x + boxw, boxw, 2 * w - boxw * 2 , w - boxw * 2, m == selmon, urg & 1 << i);
-			if (occ & 1 << i)
-				drw_rect(drw, x + boxs - 1, boxs - 1, boxw + 1, boxw + 1, 1, urg & 1 << i);
-			x += w;
+			drw_rounded_rect(drw, x + boxw, boxw, tag_ratio * w - 2 * boxw , w - boxw * 2, m == selmon, urg & 1 << i);
+			x += (tag_ratio - 1) * w;
 		} else {
-			drw_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, urg & 1 << i);
-			if (occ & 1 << i)
-				drw_rect(drw, x + boxs - 1, boxs - 1, boxw + 1, boxw + 1, 1, urg & 1 << i);
+			drw_rounded_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, urg & 1 << i);
 		}
 		x += w;
 	}
