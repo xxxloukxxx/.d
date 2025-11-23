@@ -808,66 +808,58 @@ dirtomon(int dir)
 void
 drawbar(Monitor *m)
 {
-	int x = 0, w = 0, tw = 0, stw = 0;
-	int boxs = drw->fonts->h / 8;
-	/* int boxs = drw->fonts->h / 9; */
-	int boxw = drw->fonts->h / 6;
-	/* int boxw = drw->fonts->h / 6 + 2; */
-	unsigned int i, occ = 0, urg = 0;
-	Client *c;
+    int x = 0, w = 0, tw = 0, stw = 0;
+    int boxs = drw->fonts->h / 8;
+    int boxw = drw->fonts->h / 6;
+    unsigned int i, occ = 0, urg = 0;
+    float k = 1.0;
+    Client* c;
 
-	if (!m->showbar)
-		return;
+    if (!m->showbar)
+        return;
 
-	if(showsystray && m == systraytomon(m) && !systrayonleft)
-		stw = getsystraywidth();
+    if (showsystray && m == systraytomon (m) && !systrayonleft)
+        stw = getsystraywidth ();
 
-	drw_setscheme(drw, scheme[SchemeNorm]);
-	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
-		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
-		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
-	}
+    drw_setscheme (drw, scheme[SchemeNorm]);
+    /* draw status first so it can be overdrawn by tags later */
+    if (m == selmon) {                      /* status is only drawn on selected monitor */
+        tw = TEXTW (stext) - lrpad / 2 + 2; /* 2px extra right padding */
+        drw_text (drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
+    }
 
-	resizebarwin(m);
+    resizebarwin (m);
 
-	// draw layout symbol
-	w = TEXTW(m->ltsymbol);
-	/* x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0); */
-	x = drw_text(drw, x, 0, w, bh, 0 , m->ltsymbol, 0);
-	
-	// draw windows name
-	if ((w = m->ww - tw - stw - x) > bh) {
-		if (m->sel) {
-			drw_text(drw, x, 0, w, bh, 0, m->sel->name, 0);
-			/* drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0); */
-		} else {
-			drw_rect(drw, x, 0, w, bh, 1, 1);
-		}
-	}
+    // draw layout symbol
+    w = TEXTW (m->ltsymbol);
+    x = drw_text (drw, x, 0, w, bh, 0, m->ltsymbol, 0);
 
-	// draw tags
-	for (c = m->clients; c; c = c->next) {
-		occ |= c->tags;
-		if (c->isurgent)
-			urg |= c->tags;
-	}
+    // draw windows name
+    if ((w = m->ww - tw - stw - x) > bh) {
+        if (m->sel) {
+            drw_text (drw, x, 0, w, bh, 0, m->sel->name, 0);
+        } else {
+            drw_rect (drw, x, 0, w, bh, 1, 1);
+        }
+    }
 
-	x = (m->ww - bh*(LENGTH(tags)-1) - bh * tag_ratio) / 2 ;
-	drw_rect(drw, x-bh, 0, m->ww - tw - stw - x + bh, bh, 1, 1);
-	w = bh; 
-	for (i = 0; i < LENGTH(tags); i++) {
-		if (occ & 1 << i)
-			drw_rect(drw, x + boxs - 1, boxs - 1, 2*boxw, 2*boxw, 1, 0);
-		if (m->tagset[m->seltags] & 1 << i){
-			drw_rounded_rect(drw, x + boxw, boxw, tag_ratio * w - 2 * boxw , w - boxw * 2, m == selmon, 0);
-			x += (tag_ratio - 1) * w;
-		} else {
-			drw_rounded_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, 0);
-		}
-		x += w;
-	}
-	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
+    // draw tags
+    for (c = m->clients; c; c = c->next) {
+        occ |= c->tags;
+        if (c->isurgent)
+            urg |= c->tags;
+    }
+
+    x = (m->ww - bh * (LENGTH (tags) - 1) - bh * tag_ratio) / 2;
+    drw_rect (drw, x - bh, 0, m->ww - tw - stw - x + bh, bh, 1, 1);
+    for (i = 0; i < LENGTH (tags); i++) {
+        if (occ & 1 << i)
+            drw_rect (drw, x + boxs - 1, boxs - 1, 2 * boxw, 2 * boxw, 1, 0);
+        k = (m->tagset[m->seltags] & 1 << i) ? tag_ratio : 1.0;
+        drw_rounded_rect (drw, x + boxw, boxw, k * bh - boxw * 2, bh - boxw * 2, ( k > 1) && (m == selmon), 0);
+        x += k * bh;
+    }
+    drw_map (drw, m->barwin, 0, 0, m->ww - stw, bh);
 }
 
 void

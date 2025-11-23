@@ -229,42 +229,29 @@ drw_rounded_rect (Drw* drw, int x, int y, unsigned int w, unsigned int h, int fi
     if (!drw || !drw->scheme)
         return;
 
+    unsigned int r = (w < h ? w : h) / 3; /* rayon des coins */
+
+    if (r == 0) {
+        drw_rect (drw, x, y, w, h, filled, invert);
+        return;
+    }
+
     GC gc        = drw->gc;
     Display* dpy = drw->dpy;
     Drawable d   = drw->drawable;
 
     XSetForeground (dpy, gc, invert ? drw->scheme[ColBg].pixel : drw->scheme[ColFg].pixel);
 
-    unsigned int r = (w < h ? w : h) / 4; /* rayon des coins */
-
-    if (r == 0) {
-        if (filled)
-            XFillRectangle (dpy, d, gc, x, y, w, h);
-        else
-            XDrawRectangle (dpy, d, gc, x, y, w - 1, h - 1);
-        return;
-    }
-
-    if (filled) {
-        XDrawLine (dpy, d, gc, x + r, y, x + w - r, y);         // haut
-        XDrawLine (dpy, d, gc, x + r, y + h, x + w - r, y + h); // bas
-        XDrawLine (dpy, d, gc, x, y + r, x, y + h - r);         // gauche
-        XDrawLine (dpy, d, gc, x + w, y + r, x + w, y + h - r); // droite
+    XDrawLine (dpy, d, gc, x + r, y, x + w - r, y);                                       // haut
+    XDrawLine (dpy, d, gc, x + r, y + h, x + w - r, y + h);                               // bas
+    XDrawLine (dpy, d, gc, x, y + r, x, y + h - r);                                       // gauche
+    XDrawLine (dpy, d, gc, x + w, y + r, x + w, y + h - r);                               // droite
+    XDrawArc (dpy, d, gc, x, y, 2 * r, 2 * r, 90 * 64, 90 * 64);                          // haut-gauche
+    XDrawArc (dpy, d, gc, x + w - 2 * r, y, 2 * r, 2 * r, 0, 90 * 64);                    // haut-droit
+    XDrawArc (dpy, d, gc, x, y + h - 2 * r, 2 * r, 2 * r, 180 * 64, 90 * 64);             // bas-gauche
+    XDrawArc (dpy, d, gc, x + w - 2 * r, y + h - 2 * r, 2 * r, 2 * r, 270 * 64, 90 * 64); // bas-droit
+    if (filled)
         XFillRectangle (dpy, d, gc, x + r, y + r, w - 2 * r + 1, h - 2 * r + 1);
-        XDrawArc (dpy, d, gc, x, y, 2 * r, 2 * r, 90 * 64, 90 * 64);                          // haut-gauche
-        XDrawArc (dpy, d, gc, x + w - 2 * r, y, 2 * r, 2 * r, 0, 90 * 64);                    // haut-droit
-        XDrawArc (dpy, d, gc, x, y + h - 2 * r, 2 * r, 2 * r, 180 * 64, 90 * 64);             // bas-gauche
-        XDrawArc (dpy, d, gc, x + w - 2 * r, y + h - 2 * r, 2 * r, 2 * r, 270 * 64, 90 * 64); // bas-droit
-    } else {
-        XDrawLine (dpy, d, gc, x + r, y, x + w - r, y);                                       // haut
-        XDrawLine (dpy, d, gc, x + r, y + h, x + w - r, y + h);                               // bas
-        XDrawLine (dpy, d, gc, x, y + r, x, y + h - r);                                       // gauche
-        XDrawLine (dpy, d, gc, x + w, y + r, x + w, y + h - r);                               // droite
-        XDrawArc (dpy, d, gc, x, y, 2 * r, 2 * r, 90 * 64, 90 * 64);                          // haut-gauche
-        XDrawArc (dpy, d, gc, x + w - 2 * r, y, 2 * r, 2 * r, 0, 90 * 64);                    // haut-droit
-        XDrawArc (dpy, d, gc, x, y + h - 2 * r, 2 * r, 2 * r, 180 * 64, 90 * 64);             // bas-gauche
-        XDrawArc (dpy, d, gc, x + w - 2 * r, y + h - 2 * r, 2 * r, 2 * r, 270 * 64, 90 * 64); // bas-droit
-    }
 }
 
 int
