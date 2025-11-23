@@ -833,12 +833,14 @@ drawbar(Monitor *m)
 
 	// draw layout symbol
 	w = TEXTW(m->ltsymbol);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+	/* x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0); */
+	x = drw_text(drw, x, 0, w, bh, 0 , m->ltsymbol, 0);
 	
 	// draw windows name
 	if ((w = m->ww - tw - stw - x) > bh) {
 		if (m->sel) {
-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+			drw_text(drw, x, 0, w, bh, 0, m->sel->name, 0);
+			/* drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0); */
 		} else {
 			drw_rect(drw, x, 0, w, bh, 1, 1);
 		}
@@ -856,12 +858,12 @@ drawbar(Monitor *m)
 	w = bh; 
 	for (i = 0; i < LENGTH(tags); i++) {
 		if (occ & 1 << i)
-			drw_rect(drw, x + boxs - 1, boxs - 1, 2*boxw, 2*boxw, 1, urg & 1 << i);
+			drw_rect(drw, x + boxs - 1, boxs - 1, 2*boxw, 2*boxw, 1, 0);
 		if (m->tagset[m->seltags] & 1 << i){
-			drw_rounded_rect(drw, x + boxw, boxw, tag_ratio * w - 2 * boxw , w - boxw * 2, m == selmon, urg & 1 << i);
+			drw_rounded_rect(drw, x + boxw, boxw, tag_ratio * w - 2 * boxw , w - boxw * 2, m == selmon, 0);
 			x += (tag_ratio - 1) * w;
 		} else {
-			drw_rounded_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, urg & 1 << i);
+			drw_rounded_rect(drw, x + boxw, boxw, w - boxw * 2, w - boxw * 2, 0, 0);
 		}
 		x += w;
 	}
