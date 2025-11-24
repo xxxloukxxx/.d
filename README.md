@@ -5,4 +5,4 @@
 - nnn
 - dmenu
 - slock
-- slstatus
+- dwmblocks
