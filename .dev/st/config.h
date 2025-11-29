@@ -6,7 +6,8 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char* font   = "agave:size=12";
-static int borderpx = 0;
+// static char* font   = "hack:size=12";
+static int borderpx = 1;
 
 /*
  * What program is execed by st depends of these precedence rules:

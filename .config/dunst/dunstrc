@@ -1,4 +1,5 @@
 [global]
+    # font = "Hack 12"
     font = "Agave 12"
     allow_markup = yes
     markup = full
