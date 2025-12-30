@@ -229,7 +229,7 @@ drw_rounded_rect (Drw* drw, int x, int y, unsigned int w, unsigned int h, int fi
     if (!drw || !drw->scheme)
         return;
 
-    unsigned int r = (w < h ? w : h) / 3; /* rayon des coins */
+    unsigned int r = (w < h ? w : h) / 4; /* rayon des coins */
 
     if (r == 0) {
         drw_rect (drw, x, y, w, h, filled, invert);

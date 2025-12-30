@@ -16,6 +16,7 @@ install: bin
 	  fi
 	mkdir -p ~/.config
 	cp -fr .config/dunst ~/.config/
+	cp -fr .config/nvim ~/.config/
 	cp -fr .config/.moc ~/
 
 bin:

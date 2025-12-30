@@ -99,6 +99,7 @@ nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 nnoremap <silent> <leader>m          :w<cr>:make<cr>
 nnoremap <silent> <leader>x          :bd!<cr>
 nnoremap <silent> <leader>t          :bot term<CR><C-W>N:res 10<cr>i
+tnoremap <silent> <leader><Esc>      <C-\><C-n>
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
 nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
@@ -150,13 +151,15 @@ nnoremap <silent> <localleader>v     :edit   $MYVIMRC<CR>
 nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
+nnoremap <leader>g                   :g/<C-r><C-w>/
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>f          :Neoformat<CR>
 
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
-nnoremap <silent> <leader><leader>l  :Lines<cr>
+nnoremap <silent> <leader><leader>n  :History:<cr>
+nnoremap <silent> <leader><leader>l  :Lines
 " }}}
 
 " plugins {{{
@@ -168,20 +171,19 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
       \| endif
 
 call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -197,15 +199,20 @@ Plug 'yegappan/mru'
 call plug#end()
 " }}}
 
-" plugins configs {{{
+" plugins configs
 
 """ Colorscheme {{{
 set t_Co=256
 set termguicolors
+
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italicize_strings = 1
+
 try
-  " colorscheme gotham
   " colorscheme sorbet
-  colorscheme wildcharm
+  " colorscheme wildcharm
+  colorscheme gruvbox
 catch
   colorscheme desert
 endtr
@@ -214,6 +221,16 @@ endtr
 """ Config for lightline {{{
 set laststatus=2
 set noshowmode
+let g:lightline = {
+      \ 'mode_map' : {
+      \   'n' : 'N', 'i' : 'I', 'R' : 'R', 'v' : 'V', 'V' : 'V-L', "\<C-v>": 'V-B', 'c' : 'C', 's' : 'S', 'S' : 'S-L', "\<C-s>": 'S-B', 't': 'T'
+      \  },
+      \  'active': {
+      \    'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+      \    'right': [['lineinfo'], ['percent'], ['filetype']]
+      \  },
+      \  'colorscheme' : 'powerline',
+      \ }
 " }}}
 
 """ Config for Tcomment {{{
@@ -300,13 +317,13 @@ let g:vimtex_view_general_viewer = 'zathura'
 
 """ Config for Yankring {{{
 let g:yankring_window_use_horiz = 1
-let g:yankring_window_use_bottom = 0
+let g:yankring_window_use_bottom = 1
 let g:yankring_window_height = 16
 let g:yankring_history_file = '.yankring-history'
 nnoremap <silent> <leader>p :YRShow<CR>
 " }}}
 
-" }}}
+"
 
 " }}}
 
