@@ -14,7 +14,7 @@ static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display sy
 static const int showsystray  = 1; /* 0 means no systray */
 static const int focusonwheel = 0;
 // static const char* fonts[]    = { "hack:size=12" };
-static const char* fonts[]    = { "agave:size=16" };
+static const char* fonts[] = { "agave:size=16" };
 // static const char dmenufont[] = "hack:size=12";
 static const char dmenufont[] = "agave:size=16";
 
@@ -78,6 +78,7 @@ static const Layout layouts[] = {
 static char dmenumon[2]           = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[]     = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char* termcmd[]      = { "st", NULL };
+static const char* vimcmd[]       = { "st", "vim", NULL };
 static const char* dpowercmd[]    = { "dpower", NULL };
 static const char* dmocpcmd[]     = { "dmocp", NULL };
 static const char* dmocpinfo[]    = { "dmocpinfo", NULL };
@@ -92,40 +93,56 @@ static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
     /* modifier, key, function, argument */
-    { MODKEY, XK_d, spawn, { .v = dmenucmd } }, { MODKEY, XK_Return, spawn, { .v = termcmd } },
-    { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } }, { MODKEY, XK_m, spawn, { .v = dmocpcmd } },
-    { MODKEY | ShiftMask, XK_m, spawn, { .v = dmocpinfo } }, { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } },
+    { MODKEY, XK_d, spawn, { .v = dmenucmd } },                      //
+    { MODKEY, XK_Return, spawn, { .v = termcmd } },                  //
+    { MODKEY, XK_BackSpace, spawn, { .v = vimcmd } },                //
+    { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } }, //
+    { MODKEY, XK_m, spawn, { .v = dmocpcmd } },                      //
+    { MODKEY | ShiftMask, XK_m, spawn, { .v = dmocpinfo } },         //
+    { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } },      //
 
-    { MODKEY, XK_b, togglebar, { 0 } },
+    { MODKEY, XK_b, togglebar, { 0 } }, //
 
-    { MODKEY, XK_Up, focusstack, { .i = -1 } }, { MODKEY, XK_Down, focusstack, { .i = +1 } },
-    { MODKEY, XK_Left, focusstack, { .i = -1 } }, { MODKEY, XK_Right, focusstack, { .i = +1 } },
+    { MODKEY, XK_Up, focusstack, { .i = -1 } },    //
+    { MODKEY, XK_Down, focusstack, { .i = +1 } },  //
+    { MODKEY, XK_Left, focusstack, { .i = -1 } },  //
+    { MODKEY, XK_Right, focusstack, { .i = +1 } }, //
 
-    { MODKEY, XK_j, incnmaster, { .i = +1 } }, { MODKEY, XK_k, incnmaster, { .i = -1 } },
+    { MODKEY, XK_j, incnmaster, { .i = +1 } }, //
+    { MODKEY, XK_k, incnmaster, { .i = -1 } }, //
 
-    { MODKEY | ShiftMask, XK_j, setmfact, { .f = -0.05 } }, { MODKEY | ShiftMask, XK_k, setmfact, { .f = +0.05 } },
-    { MODKEY | ShiftMask, XK_h, setmfact, { .f = +1.618 } },
+    { MODKEY | ShiftMask, XK_j, setmfact, { .f = -0.05 } },  //
+    { MODKEY | ShiftMask, XK_k, setmfact, { .f = +0.05 } },  //
+    { MODKEY | ShiftMask, XK_h, setmfact, { .f = +1.618 } }, //
 
-    { MODKEY | ShiftMask, XK_Return, zoom, { 0 } },
+    { MODKEY | ShiftMask, XK_Return, zoom, { 0 } }, //
 
-    { MODKEY | ShiftMask, XK_c, killclient, { 0 } }, { MODKEY, XK_f, setlayout, { 0 } },
+    { MODKEY, XK_f, setlayout, { 0 } },              //
+    { MODKEY | ShiftMask, XK_c, killclient, { 0 } }, //
 
-    { MODKEY, XK_p, focusmon, { .i = +1 } }, { MODKEY | ShiftMask, XK_p, tagmon, { .i = +1 } },
+    { MODKEY, XK_p, focusmon, { .i = +1 } },           //
+    { MODKEY | ShiftMask, XK_p, tagmon, { .i = +1 } }, //
 
     /* --- adajacent-tag --- */
-    { MODKEY, XK_a, viewnext, { 0 } },
+    { MODKEY, XK_a, viewnext, { 0 } }, //
     /* --- adajacent-tag --- */
 
     /* --- scratchpad --- */
-    { MODKEY, XK_Escape, togglescratch, { .v = spadcmd } }, { MODKEY, XK_c, togglescratch, { .v = spcalccmd } },
+    { MODKEY, XK_Escape, togglescratch, { .v = spadcmd } }, //
+    // { MODKEY, XK_c, togglescratch, { .v = spcalccmd } },    //
     /* --- scratchpad --- */
 
     /* --- volume --- */
-    { 0, XF86XK_AudioRaiseVolume, spawn, { .v = upvol } }, { 0, XF86XK_AudioLowerVolume, spawn, { .v = downvol } },
-    { 0, XF86XK_AudioMute, spawn, { .v = mutevol } },
+    { 0, XF86XK_AudioRaiseVolume, spawn, { .v = upvol } },   //
+    { 0, XF86XK_AudioLowerVolume, spawn, { .v = downvol } }, //
+    { 0, XF86XK_AudioMute, spawn, { .v = mutevol } },        //
     /* --- volume --- */
 
-    TAGKEYS (XK_q, 0), TAGKEYS (XK_w, 1), TAGKEYS (XK_e, 2), TAGKEYS (XK_r, 3), TAGKEYS (XK_t, 4)
+    TAGKEYS (XK_q, 0), //
+    TAGKEYS (XK_w, 1), //
+    TAGKEYS (XK_e, 2), //
+    TAGKEYS (XK_r, 3), //
+    TAGKEYS (XK_t, 4)  //
 };
 
 /* button definitions */
