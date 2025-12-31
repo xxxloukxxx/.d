@@ -83,7 +83,7 @@ nnoremap dd     "_dd
 inoremap jk     <esc>
 inoremap JK     <esc>
 nnoremap <SPACE> <Nop>
-nnoremap ; :
+" nnoremap ; :
 vnoremap ; :
 
 let mapleader = " "
@@ -159,7 +159,7 @@ nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
 nnoremap <silent> <leader><leader>n  :History:<cr>
-nnoremap <silent> <leader><leader>l  :Lines
+nnoremap <silent> <leader><leader>l  :Lines<cr>
 " }}}
 
 " plugins {{{

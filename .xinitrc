@@ -14,12 +14,20 @@ start() {
 	fi
 }
 
-start picom --backend glx
-start vesktop
-start rootclock
-start dwmblocks
-start mocp -S
+while true;
+do
+	start picom --backend glx
+	start vesktop
+	start rootclock
+	start dwmblocks
+	start mocp -S
+	sleep 1 && dwm
+	pkill picom
+	pkill vesktop
+	pkill rootclock
+	pkill dwmblocks
+done
 
-sleep 1 && exec dwm
+# sleep 1 && exec dwm
 
 # vim: set ft=bash :
