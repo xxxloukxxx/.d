@@ -83,7 +83,7 @@ nnoremap dd     "_dd
 inoremap jk     <esc>
 inoremap JK     <esc>
 nnoremap <SPACE> <Nop>
-" nnoremap ; :
+nnoremap ; :
 vnoremap ; :
 
 let mapleader = " "
@@ -152,6 +152,7 @@ nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
 nnoremap <leader>g                   :g/<C-r><C-w>/
+nnoremap <silent> <leader><leader>o           :!nopen <C-r><C-f><CR>
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>f          :Neoformat<CR>
 
@@ -171,7 +172,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
       \| endif
 
 call plug#begin()
-Plug 'morhetz/gruvbox'
+Plug 'rainglow/vim'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
@@ -212,7 +213,7 @@ let g:gruvbox_italicize_strings = 1
 try
   " colorscheme sorbet
   " colorscheme wildcharm
-  colorscheme gruvbox
+  colorscheme bold-contrast
 catch
   colorscheme desert
 endtr
