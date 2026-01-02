@@ -26,6 +26,7 @@ do
 	pkill vesktop
 	pkill rootclock
 	pkill dwmblocks
+	sleep 1
 done
 
 # sleep 1 && exec dwm
