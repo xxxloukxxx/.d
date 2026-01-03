@@ -47,7 +47,7 @@ if !isdirectory($HOME."/.vim/undo-dir")
 endif
 set undodir=~/.vim/undo-dir
 set undofile
-" set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
+set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 set autochdir
@@ -211,9 +211,9 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_italicize_strings = 1
 
 try
-  " colorscheme sorbet
+  colorscheme sorbet
   " colorscheme wildcharm
-  colorscheme stark-contrast
+  " colorscheme stark-contrast
 catch
   colorscheme desert
 endtr
