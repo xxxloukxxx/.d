@@ -12,7 +12,8 @@ enum background_mode_cfg {
   BG_MODE_DARKEN,
   BG_MODE_LIGHTEN,
 };
-static const int background_mode = BG_MODE_SOLID;
+static const int background_mode = BG_MODE_LIGHTEN;
+// static const int background_mode = BG_MODE_SOLID;
 // static const int background_mode = BG_MODE_OVERLAY;
 static const int block_padding_x = 48;
 static const int block_padding_y = 24;
