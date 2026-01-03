@@ -12,9 +12,9 @@ enum background_mode_cfg {
   BG_MODE_DARKEN,
   BG_MODE_LIGHTEN,
 };
-static const int background_mode = BG_MODE_LIGHTEN;
+// static const int background_mode = BG_MODE_LIGHTEN;
 // static const int background_mode = BG_MODE_SOLID;
-// static const int background_mode = BG_MODE_OVERLAY;
+static const int background_mode = BG_MODE_COPY;
 static const int block_padding_x = 48;
 static const int block_padding_y = 24;
 
@@ -25,7 +25,8 @@ static const char *time_fonts[] = {
     // "Inter:style=ExtraBold:size=120", "Liberation Sans:style=Bold:size=120",
     // "Noto Sans Math:style=Regular:size=120", /* fallback for ratio symbol */
 };
-static const char *time_color = "#333333";
+// static const char *time_color = "#333333";
+static const char *time_color = "#555555";
 static const char *time_fmt = "%-H\xe2\x88\xb6%M";
 
 /* Date (2nd line; set show_date=0 to disable) */
@@ -36,7 +37,8 @@ static const char *date_fonts[] = {
     // "Liberation Sans:style=Regular:size=26",
     // "Noto Sans:style=Regular:size=26",
 };
-static const char *date_color = "#222222";
+// static const char *date_color = "#222222";
+static const char *date_color = "#555555";
 static const char *date_fmt = "%A, %-d %B %Y";
 
 /* Refresh interval (seconds) */

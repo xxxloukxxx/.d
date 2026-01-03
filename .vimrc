@@ -213,7 +213,7 @@ let g:gruvbox_italicize_strings = 1
 try
   " colorscheme sorbet
   " colorscheme wildcharm
-  colorscheme bold-contrast
+  colorscheme stark-contrast
 catch
   colorscheme desert
 endtr
