@@ -47,7 +47,7 @@ if !isdirectory($HOME."/.vim/undo-dir")
 endif
 set undodir=~/.vim/undo-dir
 set undofile
-set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
+" set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 set autochdir
@@ -99,7 +99,7 @@ nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 nnoremap <silent> <leader>m          :w<cr>:make<cr>
 nnoremap <silent> <leader>x          :bd!<cr>
 nnoremap <silent> <leader>t          :bot term<CR><C-W>N:res 10<cr>i
-tnoremap <silent> <leader><Esc>      <C-\><C-n>
+" tnoremap <silent> <leader><Esc>      <C-\><C-n>
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
 nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
