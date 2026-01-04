@@ -20,7 +20,8 @@ static const int block_padding_y = 24;
 
 /* Time (1st line) */
 static const char *time_fonts[] = {
-    "Agave:style=ExtraBold:size=60",
+    "hack:style=Bold:size=60",
+    // "Agave:style=ExtraBold:size=60",
     // "Agave:style=ExtraBold:size=120",
     // "Inter:style=ExtraBold:size=120", "Liberation Sans:style=Bold:size=120",
     // "Noto Sans Math:style=Regular:size=120", /* fallback for ratio symbol */
@@ -32,7 +33,8 @@ static const char *time_fmt = "%-H\xe2\x88\xb6%M";
 /* Date (2nd line; set show_date=0 to disable) */
 static const int show_date = 1;
 static const char *date_fonts[] = {
-    "Agave:style=Regular:size=26",
+    "hack:style=Regular:size=26",
+    // "Agave:style=Regular:size=26",
     // "Inter:style=Regular:size=26",
     // "Liberation Sans:style=Regular:size=26",
     // "Noto Sans:style=Regular:size=26",

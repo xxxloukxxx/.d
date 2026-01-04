@@ -792,6 +792,9 @@ void drawbar (Monitor* m) {
     if (!m->showbar)
         return;
 
+    drw_setscheme (drw, scheme[SchemeNorm]);
+    drw_rect (drw, 0, 0, m->ww, drw->fonts->h, 1, 1);
+
     if (showsystray && m == systraytomon (m) && !systrayonleft)
         stw = getsystraywidth ();
 
@@ -799,7 +802,7 @@ void drawbar (Monitor* m) {
     /* draw status first so it can be overdrawn by tags later */
     if (m == selmon) {                      /* status is only drawn on selected monitor */
         tw = TEXTW (stext) - lrpad / 2 + 2; /* 2px extra right padding */
-        drw_text (drw, m->ww - tw - stw, 1, tw, bh, lrpad / 2 - 2, stext, 0);
+        drw_text (drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
     }
 
     resizebarwin (m);
@@ -815,7 +818,7 @@ void drawbar (Monitor* m) {
     for (i = 0; i < LENGTH (tags); i++) {
         w = TEXTW (tags[i]);
         drw_setscheme (drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-        drw_text (drw, x, 1, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+        drw_text (drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
         if (occ & 1 << i)
             drw_rect (drw, x + boxs, boxs, boxw, boxw, m == selmon && selmon->sel && selmon->sel->tags & 1 << i, urg & 1 << i);
         x += w;
@@ -831,7 +834,7 @@ void drawbar (Monitor* m) {
     // draw windows name
     if ((w = m->ww - tw - stw - x) > bh) {
         if (m->sel) {
-            drw_text (drw, x, 1, w, bh, lrpad / 2, m->sel->name, 0);
+            drw_text (drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
         } else {
             drw_rect (drw, x, 0, w, bh, 1, 1);
         }

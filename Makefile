@@ -15,8 +15,8 @@ install: bin
 	  sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
 	  fi
 	mkdir -p ~/.config
-	cp -fr .config/dunst ~/.config/
-	cp -fr .config/nvim ~/.config/
+	# cp -fr .config/dunst ~/.config/
+	# cp -fr .config/nvim ~/.config/
 	cp -fr .config/.moc ~/
 
 bin:
@@ -35,6 +35,8 @@ zsh:
 
 dotfiles:
 	ln -nf .xinitrc .vimrc .zshrc .gitconfig ~/
+	mkdir -p ~/.config/dunst
+	ln -nf ./.config/dunst/dunstrc ~/.config/dunst/
 
 suckless: dmenu dwm dwmblocks nnn noice rootclock slock st
 

@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char* font   = "agave:size=16";
-// static char* font   = "hack:size=12";
+// static char* font   = "agave:size=16";
+static char* font   = "hack:size=14";
 static int borderpx = 0;
 
 /*
