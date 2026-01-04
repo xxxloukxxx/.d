@@ -74,17 +74,15 @@ autocmd BufWinEnter *.* silent loadview
 " }}}
 
 " mappings {{{
-nnoremap <down> gj
-nnoremap <up>   gk
-nnoremap d      "_d
-nnoremap c      "_c
-nnoremap <del>  "_x
-nnoremap dd     "_dd
-inoremap jk     <esc>
-inoremap JK     <esc>
+nnoremap <down>  gj
+nnoremap <up>    gk
+nnoremap dd      "_dd
+nnoremap d       "_d
+nnoremap c       "_c
+nnoremap <del>   "_x
+inoremap jk      <esc>
+inoremap JK      <esc>
 nnoremap <SPACE> <Nop>
-nnoremap ; :
-vnoremap ; :
 
 let mapleader = " "
 let g:mapleader = " "
@@ -98,19 +96,13 @@ nnoremap <silent> <leader>q          :q<CR>
 nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 nnoremap <silent> <leader>m          :w<cr>:make<cr>
 nnoremap <silent> <leader>x          :bd!<cr>
+nnoremap <silent> <leader>c          :close<CR>
 nnoremap <silent> <leader>t          :bot term<CR><C-W>N:res 10<cr>i
 tnoremap <silent> <C-q>              <C-\><C-n>
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
 nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
 nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>:enew<cr>
-nnoremap <silent> <leader>c          :close<CR>
-" nnoremap <silent> <leader>p          <C-W><C-W>
-nnoremap <silent> <leader><leader>,  5<C-W><
-nnoremap <silent> <leader><leader>.  5<C-W>>
-nnoremap <silent> <leader><leader>j  5<C-W>-
-nnoremap <silent> <leader><leader>k  5<C-W>+
-
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
 """ Move lines
@@ -152,7 +144,7 @@ nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
 nnoremap <leader>g                   :g/<C-r><C-w>/
-nnoremap <silent> <leader><leader>o           :!nopen <C-r><C-f><CR>
+nnoremap <silent> <leader><leader>o  :!nopen <C-r><C-f><CR>
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>f          :Neoformat<CR>
 
@@ -161,18 +153,19 @@ nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
 nnoremap <silent> <leader><leader>n  :History:<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
+nnoremap <silent> <leader><leader>j  :Marks<cr>
+nnoremap <silent> <leader><leader>u  :UndotreeToggle<cr>
 " }}}
 
 " plugins {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-      \| PlugInstall --sync | source $MYVIMRC
-      \| endif
+
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | source $MYVIMRC | endif
 
 call plug#begin()
-Plug 'rainglow/vim'
+Plug 'romainl/vim-cool'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
@@ -200,20 +193,20 @@ Plug 'yegappan/mru'
 call plug#end()
 " }}}
 
-" plugins configs
+" plugins configs {{{
+
+""" vim-cool config {{{
+let g:cool_total_matches = 1
+" }}}
 
 """ Colorscheme {{{
 set t_Co=256
 set termguicolors
 
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_italicize_strings = 1
-
 try
   colorscheme sorbet
-  " colorscheme wildcharm
-  " colorscheme stark-contrast
+" colorscheme wildcharm
+" colorscheme stark-contrast
 catch
   colorscheme desert
 endtr
@@ -324,7 +317,7 @@ let g:yankring_history_file = '.yankring-history'
 nnoremap <silent> <leader>p :YRShow<CR>
 " }}}
 
-"
+" }}}
 
 " }}}
 
