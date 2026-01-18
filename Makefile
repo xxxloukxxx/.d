@@ -9,7 +9,7 @@ install: bin
 	sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
 	sudo apt-get -y -qq install vim make git nnn gcc build-essential cmake ninja-build locales-all \
 	  curl wget fzf tmux silversearcher-ag universal-ctags npm xinit xorg xdotool numlockx x11-utils arandr \
-	  libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave greetd \
+	  libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave fonts-hack fonts-hack-otf fonts-hack-ttf fonts-hack-web greetd \
 	  dunst pavucontrol pulseaudio pulseaudio-utils trash-cli picom libxcb-util-dev
 	if ! grep -q startx /etc/greetd/config.toml; then \
 	  sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
