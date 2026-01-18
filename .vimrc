@@ -36,7 +36,12 @@ set hlsearch
 set timeoutlen=500
 set history=5000
 " set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+if has('clipboard') && exists('$DISPLAY')
+    set clipboard=unnamedplus
+else
+    set clipboard=autoselectplus
+endif
 set shortmess+=I
 set nofoldenable
 if !isdirectory($HOME."/.vim")
