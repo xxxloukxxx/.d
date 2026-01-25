@@ -6,3 +6,4 @@
 - dmenu
 - slock
 - dwmblocks
+- preseed.cfg (stable)
