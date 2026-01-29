@@ -38,9 +38,9 @@ set history=5000
 " set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " set clipboard=unnamedplus
 if has('clipboard') && exists('$DISPLAY')
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 else
-    set clipboard=autoselectplus
+  set clipboard=autoselectplus
 endif
 set shortmess+=I
 set nofoldenable
@@ -182,7 +182,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -238,41 +238,43 @@ vnoremap <silent> <leader>/ :TComment<CR>
 " }}}
 
 """ Config for Coc {{{
-let g:coc_global_extensions = [
-      \ 'coc-highlight',
-      \ 'coc-prettier',
-      \ 'coc-markdownlint',
-      \ 'coc-texlab',
-      \ 'coc-pyright',
-      \ 'coc-json',
-      \ ]
+if exists(':CocInfo')
+  let g:coc_global_extensions = [
+        \ 'coc-highlight',
+        \ 'coc-prettier',
+        \ 'coc-markdownlint',
+        \ 'coc-texlab',
+        \ 'coc-pyright',
+        \ 'coc-json',
+        \ ]
 
-if !empty(glob('~/.vim/plugged/coc.nvim'))
-  call coc#config('colors.enable' , 'true')
-  call coc#config('inlayHint.enable' , 'false')
+  if !empty(glob('~/.vim/plugged/coc.nvim'))
+    call coc#config('colors.enable' , 'true')
+    call coc#config('inlayHint.enable' , 'false')
+  endif
+
+  inoremap <silent><expr> <TAB>  coc#pum#visible()?coc#pum#next(1):CheckBackspace()?"\<Tab>":coc#refresh()
+
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+  " Make <CR> to accept selected completion item or notify coc.nvim to format
+  " <C-g>u breaks current undo, please make your own choice
+
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+  " Use <c-space> to trigger completion
+  if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+  else
+    inoremap <silent><expr> <c-@> coc#refresh()
+  endif
+  " Highlight the symbol and its references when holding the cursor
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 endif
-
-inoremap <silent><expr> <TAB>  coc#pum#visible()?coc#pum#next(1):CheckBackspace()?"\<Tab>":coc#refresh()
-
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-" Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}
 
 """ Config for fzf.vim {{{
