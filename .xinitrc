@@ -6,7 +6,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 xrdb -merge ~/.Xresources
 
 /usr/bin/display-lr.sh
-/usr/bin/feh --randomize --bg-fill ~/.w --no-xinerama
+# /usr/bin/feh --randomize --bg-fill ~/.w --no-xinerama
 
 start() {
 	if ! pgrep -f $1; then
