@@ -25,6 +25,7 @@ all : sudoers pack greetd bin zsh dotfiles suckless
   rsync -aqh .gitconfig ~/
   rsync -aqh .config ~/
   rsync -aqh .moc ~/
+  chmod 644 ~/.moc/config
 
 @suckless:
   sudo make -s -k -C .dev/dmenu clean install
