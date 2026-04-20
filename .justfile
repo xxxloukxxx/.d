@@ -1,0 +1,34 @@
+all : sudoers greetd bin zsh dotfiles suckless
+
+@sudoers:
+    [ -f /etc/sudoers.d/cedric ] || { sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'; }
+
+@greetd:
+    if ! grep -q startx /etc/greetd/config.toml; then \
+      sudo patch -F 3 -c -u -s -u /etc/greetd/config.toml < .diff/greetd-patch.diff; \
+    fi
+
+@bin:
+    sudo rsync -aqh .bin/* /usr/bin/
+
+@zsh:
+    sudo chsh -s /usr/bin/zsh cedric
+
+@dotfiles:
+    rsync -aqh .xinitrc ~/
+    rsync -aqh .vimrc ~/
+    rsync -aqh .zshrc ~/
+    rsync -aqh .gitconfig ~/
+    rsync -aqh .config ~/
+    rsync -aqh .moc ~/
+
+@suckless:
+    sudo make -s -k -C .dev/dmenu clean install
+    sudo make -s -k -C .dev/dwm clean install
+    sudo make -s -k -C .dev/dwmblocks clean install
+    sudo make -s -k -C .dev/nnn clean install
+    sudo make -s -k -C .dev/noice clean install
+    sudo make -s -k -C .dev/slock clean install
+    sudo make -s -k -C .dev/st clean install
+
+# vi: set ts=4 sw=2: #

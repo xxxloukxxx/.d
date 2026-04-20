@@ -1,0 +1,10 @@
+#EXTM3U
+#MOCSERIAL: 768
+#EXTINF:-1,Radio Nova Paris
+https://novazz.ice.infomaniak.ch/novazz-128.mp3
+#EXTINF:-1,France Info
+http://icecast.radiofrance.fr/franceinfo-midfi.mp3
+#EXTINF:-1,Le Mouv'
+http://direct.mouv.fr/live/mouv-midfi.mp3
+#EXTINF:-1,Radio RockOn
+https://streaming.radiostreamlive.com/radiorockon_devices
