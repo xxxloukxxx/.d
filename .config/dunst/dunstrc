@@ -9,7 +9,7 @@
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = false
-    origin = top-left
+    origin = top-right
     idle_threshold = 120
     follow = keyboard
     # monitor = 0
@@ -25,7 +25,7 @@
     frame_width = 0
     width = (0,800)
     height = (0,800)
-    offset = 16x16
+    offset = 8x32
     progress_bar = true
     progress_bar_max_width = 300
     progress_bar_min_width = 300
@@ -35,7 +35,7 @@
     scale = 1
     min_icon_size = 64
     max_icon_size = 64
-    alignment = left
+    alignment = right
     vertical_alignment = center
 
 [urgency_low]
