@@ -1,7 +1,11 @@
-all : sudoers greetd bin zsh dotfiles suckless
+all : sudoers pack greetd bin zsh dotfiles suckless
 
 @sudoers:
     [ -f /etc/sudoers.d/cedric ] || { sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'; }
+
+@pack:
+	sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
+    sudo apt-get -y -qq install vim make git nnn gcc sudo build-essential meson cmake ninja-build locales-all curl wget fzf tmux silversearcher-ag universal-ctags npm xinit xorg xdotool numlockx x11-utils arandr libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave fonts-hack fonts-hack-otf fonts-hack-ttf fonts-hack-web greetd dunst pavucontrol pulseaudio pulseaudio-utils trash-cli picom libxcb-util-dev firefox-esr rsync just moc zsh zsh-autosuggestions zsh-syntax-highlighting
 
 @greetd:
     if ! grep -q startx /etc/greetd/config.toml; then \
