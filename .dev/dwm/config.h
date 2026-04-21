@@ -92,13 +92,13 @@ static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
     /* modifier, key, function, argument */
-    { MODKEY, XK_d, spawn, { .v = dmenucmd } },                      //
-    { MODKEY, XK_Return, spawn, { .v = termcmd } },                  //
-    { MODKEY, XK_BackSpace, spawn, { .v = vimcmd } },                //
+    { MODKEY, XK_d, spawn, { .v = dmenucmd } },     //
+    { MODKEY, XK_Return, spawn, { .v = termcmd } }, //
+    // { MODKEY, XK_BackSpace, spawn, { .v = vimcmd } },                //
     { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } }, //
-    { MODKEY, XK_m, spawn, { .v = dmocpcmd } },                      //
-    { MODKEY | ShiftMask, XK_m, spawn, { .v = dmocpinfo } },         //
-    { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } },      //
+    // { MODKEY, XK_m, spawn, { .v = dmocpcmd } },                      //
+    // { MODKEY | ShiftMask, XK_m, spawn, { .v = dmocpinfo } },         //
+    { MODKEY | ShiftMask, XK_s, spawn, { .v = flameshotcmd } }, //
 
     { MODKEY, XK_b, togglebar, { 0 } }, //
 
