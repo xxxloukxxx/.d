@@ -13,8 +13,8 @@ static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display sy
                                               /* False: display systray on the last monitor*/
 static const int showsystray  = 1;            /* 0 means no systray */
 static const int focusonwheel = 0;
-static const char* fonts[]    = { "agave:size=14" };
-static const char dmenufont[] = "agave:size=14";
+static const char* fonts[]    = { "agave:size=12" };
+static const char dmenufont[] = "agave:size=12";
 
 static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#141416";
