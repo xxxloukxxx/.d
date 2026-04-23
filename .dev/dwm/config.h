@@ -12,7 +12,7 @@ static const unsigned int systrayspacing = 2; /* systray spacing */
 static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, */
                                               /* False: display systray on the last monitor*/
 static const int showsystray  = 1;            /* 0 means no systray */
-static const int focusonwheel = 0;
+static const int focusonwheel = 1;
 static const char* fonts[]    = { "agave:size=12" };
 static const char dmenufont[] = "agave:size=12";
 
@@ -20,7 +20,8 @@ static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#141416";
 static const char col_gray3[] = "#666666";
 static const char col_gray4[] = "#ffffff";
-static const char col_cyan[]  = "#090c2c";
+// static const char col_cyan[]  = "#090c2c";
+static const char col_cyan[]  = "#090c6c";
 static const char col_red[]   = "#aa0000";
 
 static const char* colors[][3] = {
@@ -38,8 +39,8 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    // { "vesktop", NULL, NULL, 1 << 4, 0, 0 },
-    0
+    { "vesktop", NULL, NULL, 1 << 4, 0, 0 },
+    // 0
 };
 
 /* layout(s) */
@@ -117,6 +118,7 @@ static const Key keys[] = {
     { MODKEY | ShiftMask, XK_Return, zoom, { 0 } }, //
 
     { MODKEY, XK_f, setlayout, { 0 } },              //
+    { MODKEY, XK_space, togglefloating, { 0 } },              //
     { MODKEY | ShiftMask, XK_c, killclient, { 0 } }, //
 
     { MODKEY, XK_p, focusmon, { .i = +1 } },           //
