@@ -13,15 +13,15 @@ static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display sy
                                               /* False: display systray on the last monitor*/
 static const int showsystray  = 1;            /* 0 means no systray */
 static const int focusonwheel = 1;
-static const char* fonts[]    = { "agave:size=12" };
-static const char dmenufont[] = "agave:size=12";
+static const char* fonts[]    = { "agave:size=16" };
+static const char dmenufont[] = "agave:size=16";
 
 static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#141416";
 static const char col_gray3[] = "#666666";
 static const char col_gray4[] = "#ffffff";
 // static const char col_cyan[]  = "#090c2c";
-static const char col_cyan[]  = "#090c6c";
+static const char col_cyan[]  = "#090c4c";
 static const char col_red[]   = "#aa0000";
 
 static const char* colors[][3] = {

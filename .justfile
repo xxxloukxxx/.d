@@ -35,5 +35,12 @@ all : sudoers pack greetd bin zsh dotfiles suckless
   sudo make -s -k -C .dev/noice clean install
   sudo make -s -k -C .dev/slock clean install
   sudo make -s -k -C .dev/st clean install
+  sudo make -s -k -C .dev/dmenu clean
+  sudo make -s -k -C .dev/dwm clean
+  sudo make -s -k -C .dev/dwmblocks clean
+  sudo make -s -k -C .dev/nnn clean
+  sudo make -s -k -C .dev/noice clean
+  sudo make -s -k -C .dev/slock clean
+  sudo make -s -k -C .dev/st clean
 
 # vi: set ts=2 sw=2: #
