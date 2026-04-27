@@ -46,6 +46,7 @@ alias jc="just --choose"
 alias zz="zathura --fork"
 alias lgit="git commit -a -m \"$(date)\" && git push"
 alias e="vim"
+alias ee="nvim"
 
 export NNN_OPTS='de'
 export NNN_FIFO=/tmp/nnn.fifo

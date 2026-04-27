@@ -43,4 +43,13 @@ all : sudoers pack greetd bin zsh dotfiles suckless
   sudo make -s -k -C .dev/slock clean
   sudo make -s -k -C .dev/st clean
 
+@get-dotfiles:
+  rsync -aqh ~/.xinitrc ./
+  rsync -aqh ~/.vimrc ./
+  rsync -aqh ~/.zshrc ./
+  rsync -aqh ~/.gitconfig ./
+  rsync -aqh ~/.config/dunst ./.config/
+  rsync -aqh ~/.config/nvim ./.config/
+  rsync -aqh ~/.moc ./
+
 # vi: set ts=2 sw=2: #

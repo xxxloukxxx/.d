@@ -1,5 +1,5 @@
 #EXTM3U
-#MOCSERIAL: 768
+#MOCSERIAL: 256
 #EXTINF:-1,Radio Nova Paris
 https://novazz.ice.infomaniak.ch/novazz-128.mp3
 #EXTINF:-1,France Info
