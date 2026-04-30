@@ -56,6 +56,7 @@ set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 set autochdir
+set signcolumn=yes
 set background=dark
 " }}}
 
@@ -250,6 +251,7 @@ let g:coc_global_extensions = [
 if !empty(glob('~/.vim/plugged/coc.nvim'))
   call coc#config('colors.enable' , 'true')
   call coc#config('inlayHint.enable' , 'false')
+  call coc#config('markdownlint.config.MD013' , v:false)
 endif
 
 inoremap <silent><expr> <TAB>  coc#pum#visible()?coc#pum#next(1):CheckBackspace()?"\<Tab>":coc#refresh()

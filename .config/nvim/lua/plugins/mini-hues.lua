@@ -10,7 +10,7 @@ return {
 				background = "#0a0b16", -- Un fond sombre propre
 				foreground = "#e0e0ff", -- Texte clair
 				accent = "blue",
-				n_hues = 6,
+				n_hues = 8,
 				saturation = "high",
 			})
 		end,
