@@ -107,8 +107,8 @@ nnoremap <silent> <leader>t          :bot term<CR><C-W>N:res 10<cr>i
 tnoremap <silent> <C-q>              <C-\><C-n>
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
-nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
-nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>:enew<cr>
+nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>
+nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
 """ Move lines
@@ -313,7 +313,8 @@ let g:vimtex_compiler_latexmk_engines = {
       \}
 
 let g:vimtex_view_general_viewer = 'zathura'
-
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_mode = 0
 " }}}
 
 """ Config for Yankring {{{
