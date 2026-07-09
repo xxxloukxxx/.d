@@ -6,15 +6,15 @@ static const unsigned int gappx    = 0;       /* gap pixel between windows */
 static const unsigned int snap     = 16;      /* snap pixel */
 static const int showbar           = 1;       /* 0 means no bar */
 static const int topbar            = 1;       /* 0 means bottom bar */
-static const unsigned int systraypinning = 1; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systraypinning = 2; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft  = 0; /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
 static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, */
                                               /* False: display systray on the last monitor*/
 static const int showsystray  = 1;            /* 0 means no systray */
 static const int focusonwheel = 1;
-static const char* fonts[]    = { "agave:size=16" };
-static const char dmenufont[] = "agave:size=16";
+static const char* fonts[]    = { "agave:size=12" };
+static const char dmenufont[] = "agave:size=12";
 
 static const char col_gray1[] = "#000000";
 static const char col_gray2[] = "#141416";
@@ -39,7 +39,7 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    { "vesktop", NULL, NULL, 1 << 4, 0, 0 },
+    { "vesktop", NULL, NULL, 1 << 4, 0, 1 },
     // 0
 };
 
