@@ -35,7 +35,8 @@ case $1 in
     volume=$(get_volume)
     mute=$(get_mute)
     if [ "$mute" = "no" ]; then
-        echo "Vol.:$volume%"
+        # echo "Vol.:$volume%"
+        echo "$volume%"
     else
         echo "Mute"
     fi
