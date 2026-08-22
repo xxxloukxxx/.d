@@ -42,7 +42,7 @@ return {
 					stdin = true,
 				},
 				["tex-fmt"] = {
-					args = { "--nowrap", "--usetabs", "--tabsize", "1", "--print", "$FILENAME" },
+					args = { "--nowrap", "--usetabs", "--tabsize", "1", "--print",  "-s" },
 					stdin = true,
 				},
 			},

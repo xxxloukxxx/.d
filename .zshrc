@@ -1,10 +1,12 @@
 if [ -d "$HOME/.oh-my-zsh" ]; then
-    ZSH_THEME="minimal"
+    # ZSH_THEME="avit"
+    # ZSH_THEME="minimal"
+    ZSH_THEME="intheloop"
     COMPLETION_WAITING_DOTS="true"
     plugins=(themes git tmux fzf debian z)
 
     apt_upgr='upgrade'
-    apt_pref='apt-get'
+    apt_pref='apt'
 
     export ZSH="$HOME/.oh-my-zsh"
 
@@ -47,6 +49,7 @@ alias zz="zathura --fork"
 alias lgit="git commit -a -m \"$(date)\" && git push"
 alias e="vim"
 alias ee="nvim"
+alias vterm="vim +'terminal ++curwin'"
 
 export NNN_OPTS='de'
 export NNN_FIFO=/tmp/nnn.fifo
@@ -57,17 +60,17 @@ n() {
     [ "${NNNLVL:-0}" -eq 0 ] || {
         echo "nnn is already running"
             return
-    }
-export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-command nnn "$@"
-[ ! -f "$NNN_TMPFILE" ] || {
-    . "$NNN_TMPFILE"
-    rm -f "$NNN_TMPFILE" > /dev/null }
+        }
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    command nnn "$@"
+    [ ! -f "$NNN_TMPFILE" ] || {
+        . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null }
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # vim: ft=zsh:sw=4:
 

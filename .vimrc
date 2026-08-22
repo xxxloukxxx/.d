@@ -82,10 +82,11 @@ autocmd BufWinEnter *.* silent loadview
 " mappings {{{
 nnoremap <down>  gj
 nnoremap <up>    gk
-nnoremap dd      "_dd
-nnoremap d       "_d
+" nnoremap dd      "_dd
+" nnoremap d       "_d
 nnoremap c       "_c
 nnoremap <del>   "_x
+vnoremap <del>   "_x
 inoremap jk      <esc>
 inoremap JK      <esc>
 nnoremap <SPACE> <Nop>
@@ -172,7 +173,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | 
 
 call plug#begin()
 Plug 'romainl/vim-cool'
-Plug 'vim-scripts/YankRing.vim'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
 Plug 'chrisbra/csv.vim'
@@ -180,7 +180,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'tag': 'v2.15' }
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -317,13 +317,8 @@ let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_mode = 0
 " }}}
 
-""" Config for Yankring {{{
-let g:yankring_window_use_horiz = 1
-let g:yankring_window_use_bottom = 1
-let g:yankring_window_height = 16
-let g:yankring_history_file = '.yankring-history'
-nnoremap <silent> <leader>p :YRShow<CR>
-" }}}
+""" Config for ... {{{
+""" }}}
 
 " }}}
 
