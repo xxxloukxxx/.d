@@ -21,7 +21,6 @@ vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.shortmess:append('I')
-vim.opt.fillchars:append({ eob = '~' })
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -160,13 +159,13 @@ statusline.setup({
     }
 })
 
-require('mini.hues').setup({
-    background = '#000000',
-    foreground = '#a0a0f5',
-    accent = 'azure',
-    n_hues = 6,
-    saturation = 'mediumhigh'
-})
+-- require('mini.hues').setup({
+--     background = '#000000',
+--     foreground = '#a0a0f5',
+--     accent = 'azure',
+--     n_hues = 6,
+--     saturation = 'mediumhigh'
+-- })
 
 -- Plugins ============================================================================================
 local minideps = require('mini.deps')
@@ -241,3 +240,11 @@ vim.keymap.set('n', '<Leader>u', '<cmd>UndotreeToggle<CR>')
 -- vim-visual-multi
 minideps.add({source = 'mg979/vim-visual-multi'})
 
+-- kanagawa
+minideps.add('rebelot/kanagawa.nvim')
+
+require('kanagawa').setup({
+  theme = 'wave', -- wave, dragon, lotus
+})
+
+vim.cmd.colorscheme('kanagawa')
