@@ -1,7 +1,7 @@
 if [ -d "$HOME/.oh-my-zsh" ]; then
-    # ZSH_THEME="avit"
+	# ZSH_THEME="avit"
     # ZSH_THEME="minimal"
-    ZSH_THEME="intheloop"
+    ZSH_THEME="minimal" # set by `omz`
     COMPLETION_WAITING_DOTS="true"
     plugins=(themes git tmux fzf debian z)
 
@@ -23,13 +23,14 @@ fi
 
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=fr_FR.UTF-8
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export ARCHFLAGS="-arch x86_64"
 
 export FZF_DEFAULT_OPTS='--layout=reverse -x'
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND='ag -l -g ""'
+export LC_COLLATE="C"
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -47,8 +48,8 @@ alias j="just"
 alias jc="just --choose"
 alias zz="zathura --fork"
 alias lgit="git commit -a -m \"$(date)\" && git push"
-alias e="vim"
-alias ee="nvim"
+alias e="nvim"
+alias ee="vim"
 alias vterm="vim +'terminal ++curwin'"
 
 export NNN_OPTS='de'
@@ -60,17 +61,17 @@ n() {
     [ "${NNNLVL:-0}" -eq 0 ] || {
         echo "nnn is already running"
             return
-        }
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    command nnn "$@"
-    [ ! -f "$NNN_TMPFILE" ] || {
-        . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null }
+    }
+export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+command nnn "$@"
+[ ! -f "$NNN_TMPFILE" ] || {
+    . "$NNN_TMPFILE"
+    rm -f "$NNN_TMPFILE" > /dev/null }
 }
 
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # vim: ft=zsh:sw=4:
 

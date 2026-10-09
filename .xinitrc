@@ -6,7 +6,7 @@ xrandr --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate normal --output DP-1 
 
 hsetroot -solid black
 
-feh ~/.w/rm428-0045.jpg --bg-fill
+feh ~/.w/cat.jpg --bg-fill
 
 start() {
 	if ! pgrep -f $1; then
@@ -16,6 +16,7 @@ start() {
 
 start picom --backend glx --vsync
 # start fastcompmgr
+start dunst
 start dwmblocks
 start vesktop
 

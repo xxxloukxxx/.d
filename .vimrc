@@ -33,15 +33,18 @@ set smartcase
 set showcmd
 set showmatch
 set hlsearch
+set nomore
 set timeoutlen=500
 set history=5000
 " set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " set clipboard=unnamedplus
+
 if has('clipboard') && exists('$DISPLAY')
   set clipboard=unnamedplus
 else
   set clipboard=autoselectplus
 endif
+
 set shortmess+=I
 set nofoldenable
 if !isdirectory($HOME."/.vim")
@@ -64,7 +67,7 @@ set background=dark
 augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
-augroup END
+augroup end
 
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
@@ -73,7 +76,12 @@ augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
+augroup end
+
+augroup Tex
+  autocmd!
+  " autocmd FileType tex,cls autocmd BufWritePre <buffer> silent Neoformat
+augroup end
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
@@ -82,8 +90,8 @@ autocmd BufWinEnter *.* silent loadview
 " mappings {{{
 nnoremap <down>  gj
 nnoremap <up>    gk
-" nnoremap dd      "_dd
-" nnoremap d       "_d
+nnoremap dd      "_dd
+nnoremap d       "_d
 nnoremap c       "_c
 nnoremap <del>   "_x
 vnoremap <del>   "_x
@@ -151,7 +159,7 @@ nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
 nnoremap <leader>g                   :g/<C-r><C-w>/
-nnoremap <silent> <leader><leader>o  :!nopen <C-r><C-f><CR>
+" nnoremap <silent> <leader><leader>o  :!nopen <C-r><C-f><CR>
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>f          :Neoformat<CR>
 
@@ -160,7 +168,7 @@ nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
 nnoremap <silent> <leader><leader>n  :History:<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
-nnoremap <silent> <leader><leader>j  :Marks<cr>
+" nnoremap <silent> <leader><leader>j  :Marks<cr>
 nnoremap <silent> <leader><leader>u  :UndotreeToggle<cr>
 " }}}
 
@@ -177,7 +185,6 @@ Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex', { 'tag': 'v2.15' }
@@ -211,8 +218,6 @@ set termguicolors
 
 try
   colorscheme sorbet
-" colorscheme wildcharm
-" colorscheme stark-contrast
 catch
   colorscheme desert
 endtr
@@ -229,7 +234,6 @@ let g:lightline = {
       \    'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
       \    'right': [['lineinfo'], ['percent'], ['filetype']]
       \  },
-      \  'colorscheme' : 'powerline',
       \ }
 " }}}
 
@@ -255,7 +259,6 @@ if !empty(glob('~/.vim/plugged/coc.nvim'))
 endif
 
 inoremap <silent><expr> <TAB>  coc#pum#visible()?coc#pum#next(1):CheckBackspace()?"\<Tab>":coc#refresh()
-
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -316,6 +319,18 @@ let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_mode = 0
 " }}}
+
+
+""" Config for Neoformat {{{
+" let g:neoformat_tex_latexindent = {
+"       \ 'exe': 'latexindent',
+"       \ 'args': ['-m'],
+"       \ 'stdin': 1,
+"       \ }
+
+" let g:neoformat_enabled_tex = ['latexindent']
+""" }}}
+
 
 """ Config for ... {{{
 """ }}}
