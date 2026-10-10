@@ -16,7 +16,13 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrap = false
 vim.opt.list = true
-vim.opt.listchars = {tab = '..', trail = '_', extends = '>', precedes = '<', nbsp = '~'}
+vim.opt.listchars = {
+    tab = '..',
+    trail = '_',
+    extends = '>',
+    precedes = '<',
+    nbsp = '~'
+}
 vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.laststatus = 3
@@ -42,8 +48,10 @@ vim.keymap.set('n', '<Leader>w', ':w!<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>q', ':q<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>x', ':bd!<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>v', ':aboveleft vs<CR><C-w><C-w>', {silent = true})
-vim.keymap.set('n', '<Leader>h', ':botright split<CR><C-w><C-w>', {silent = true})
-vim.keymap.set('n', '<Leader>t', ':bot term<CR><C-\\><C-n>:resize 10<CR>i', {silent = true})
+vim.keymap.set('n', '<Leader>h', ':botright split<CR><C-w><C-w>',
+               {silent = true})
+vim.keymap.set('n', '<Leader>t', ':bot term<CR><C-\\><C-n>:resize 10<CR>i',
+               {silent = true})
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n>', {silent = true})
 vim.keymap.set('n', '<Leader>m', ':w<CR>:!make<CR>', {silent = true})
 vim.keymap.set('n', '<C-l>', ':nohlsearch<CR>', {silent = true})
@@ -55,8 +63,12 @@ vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv", {silent = true})
 vim.keymap.set('n', '<Leader>s', ':%s/')
 vim.keymap.set('n', '<Leader>r', ':%s/<C-r><C-w>//g<Left><Left>')
 vim.keymap.set('n', '<Leader>g', ':g/<C-r><C-w>/')
-vim.keymap.set('c', '<Down>', function() return vim.fn.pumvisible() == 1 and '<C-n>' or '<Down>' end, {expr = true})
-vim.keymap.set('c', '<Up>', function() return vim.fn.pumvisible() == 1 and '<C-p>' or '<Up>' end, {expr = true})
+vim.keymap.set('c', '<Down>', function()
+    return vim.fn.pumvisible() == 1 and '<C-n>' or '<Down>'
+end, {expr = true})
+vim.keymap.set('c', '<Up>', function()
+    return vim.fn.pumvisible() == 1 and '<C-p>' or '<Up>'
+end, {expr = true})
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 
 -- Commandes perso ============================================================
@@ -74,33 +86,43 @@ vim.api.nvim_create_user_command('CdCurrent', function()
 end, {})
 
 -- Autocommands ===============================================================
-
 -- terminal
 vim.api.nvim_create_autocmd('WinEnter', {
     callback = function()
         if vim.bo.buftype == 'terminal' then
             local mode = vim.api.nvim_get_mode().mode
-            if mode ~= 'i' and mode ~= 't' then vim.cmd('startinsert') end
+            if mode ~= 'i' and mode ~= 't' then
+                vim.cmd('startinsert')
+            end
         end
     end
 })
 
 -- sessions
-vim.api.nvim_create_autocmd('BufWinLeave', {pattern = '?*', command = 'silent! mkview'})
-vim.api.nvim_create_autocmd('BufWinEnter', {pattern = '?*', command = 'silent! loadview'})
+vim.api.nvim_create_autocmd('BufWinLeave',
+                            {pattern = '?*', command = 'silent! mkview'})
+vim.api.nvim_create_autocmd('BufWinEnter',
+                            {pattern = '?*', command = 'silent! loadview'})
 
 -- number
-vim.api.nvim_create_autocmd({'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter'}, {
+vim.api.nvim_create_autocmd({
+    'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter'
+}, {
     pattern = '*',
     callback = function()
-        if vim.wo.number and vim.api.nvim_get_mode().mode ~= 'i' then vim.wo.relativenumber = true end
+        if vim.wo.number and vim.api.nvim_get_mode().mode ~= 'i' then
+            vim.wo.relativenumber = true
+        end
     end
 })
 
-vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}, {
-    pattern = '*',
-    callback = function() if vim.wo.number then vim.wo.relativenumber = false end end
-})
+vim.api.nvim_create_autocmd(
+    {'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}, {
+        pattern = '*',
+        callback = function()
+            if vim.wo.number then vim.wo.relativenumber = false end
+        end
+    })
 
 -- Texlab
 vim.api.nvim_create_autocmd('FileType', {
@@ -109,15 +131,20 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.lsp.start({
             name = 'texlab',
             cmd = {'texlab'},
-            root_dir = vim.fs.dirname(vim.fs.find({'.git', 'Makefile', '*.tex'}, {upward = true})[1]) or vim.fn.getcwd(),
+            root_dir = vim.fs.dirname(vim.fs.find({'.git', 'Makefile', '*.tex'},
+                                                  {upward = true})[1]) or
+                vim.fn.getcwd(),
             settings = {
                 texlab = {
                     build = {
                         executable = 'latexmk',
-                        args = {'-pdf', '-interaction=nonstopmode', '-synctex=1', '%f'},
+                        args = {
+                            '-pdf', '-interaction=nonstopmode', '-synctex=1',
+                            '%f'
+                        },
                         onSave = false
                     },
-                    chktex = {onOpenAndSave = true},
+                    chktex = {onOpenAndSave = false},
                     diagnosticsDelay = 300,
                     latexFormatter = 'latexindent',
                     latexindent = {modifyLineBreaks = true}
@@ -131,8 +158,16 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'help',
     callback = function(args)
-        vim.keymap.set('n', '<CR>', '<C-]>', {buffer = args.buf, silent = true, desc = 'Aller au tag (aide)'})
-        vim.keymap.set('n', '<BS>', '<C-t>', {buffer = args.buf, silent = true, desc = 'Retour historique (aide)'})
+        vim.keymap.set('n', '<CR>', '<C-]>', {
+            buffer = args.buf,
+            silent = true,
+            desc = 'Aller au tag (aide)'
+        })
+        vim.keymap.set('n', '<BS>', '<C-t>', {
+            buffer = args.buf,
+            silent = true,
+            desc = 'Retour historique (aide)'
+        })
     end
 })
 
@@ -141,21 +176,23 @@ local path_package = vim.fn.stdpath('data') .. '/site/'
 local mini_path = path_package .. 'pack/deps/start/mini.nvim'
 
 if not vim.loop.fs_stat(mini_path) then
-    local clone_cmd = {'git', 'clone', '--filter=blob:none', 'https://github.com/nvim-mini/mini.nvim', mini_path}
+    local clone_cmd = {
+        'git', 'clone', '--filter=blob:none',
+        'https://github.com/nvim-mini/mini.nvim', mini_path
+    }
     vim.fn.system(clone_cmd)
     vim.cmd('packadd mini.nvim | helptags ALL')
 end
 
 require('mini.deps').setup({path = {package = path_package}})
 require('mini.completion').setup()
+require('mini.basics').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.ai').setup()
-require('mini.cursorword').setup()
+-- require('mini.cursorword').setup()
 require('mini.comment').setup()
 vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc', {remap = true})
-
-require('mini.basics').setup()
 
 local statusline = require('mini.statusline')
 local mode_map = {
@@ -188,8 +225,10 @@ statusline.setup({
             local pct = math.floor((line / math.max(total_lines, 1)) * 100)
             local location = pct .. '%%' .. ' ' .. line .. ':' .. col
             return statusline.combine_groups({
-                {hl = mode_hl, strings = {mode_str}}, {hl = 'MiniStatuslineFilename', strings = {filename}}, '%<', '%=',
-                {hl = 'MiniStatuslineFileinfo', strings = {filetype}}, {hl = mode_hl, strings = {location}}
+                {hl = mode_hl, strings = {mode_str}},
+                {hl = 'MiniStatuslineFilename', strings = {filename}}, '%<',
+                '%=', {hl = 'MiniStatuslineFileinfo', strings = {filetype}},
+                {hl = mode_hl, strings = {location}}
             })
         end
     }
@@ -213,18 +252,19 @@ require('conform').setup({
         markdown = {'prettier'}
     },
     formatters = {
-        ['lua-format'] = {prepend_args = {'--column-limit=120'}},
-        latexindent = {args = {'-m', '-c', '/tmp/', '-'}}
+        ['lua-format'] = {prepend_args = {'--column-limit=80'}},
+        ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}}
     }
 })
-vim.keymap.set('n', '<Leader>f', function() require('conform').format({async = true, lsp_fallback = true}) end)
+vim.keymap.set('n', '<Leader>f', function()
+    require('conform').format({async = true, lsp_fallback = true})
+end)
 
 -- Vimtex
 minideps.add({source = 'lervag/vimtex', checkout = 'v2.15'})
 vim.g.vimtex_view_general_viewer = 'zathura'
-vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_compiler_method = 'latexmk'
 vim.g.vimtex_quickfix_open_on_warning = 0
+vim.g.vimtex_quickfix_mode = 0
 vim.g.vimtex_compiler_latexmk = {
     aux_dir = '',
     out_dir = '',
@@ -232,8 +272,9 @@ vim.g.vimtex_compiler_latexmk = {
     continuous = 1,
     executable = 'latexmk',
     hooks = {},
-    options = {'-verbose', '-file-line-error', '-interaction=nonstopmode'}
-    -- options = {'-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode'}
+    options = {
+        '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode'
+    }
 }
 vim.g.vimtex_compiler_latexmk_engines = {
     ['_'] = '-pdf',
@@ -246,10 +287,15 @@ vim.g.vimtex_compiler_latexmk_engines = {
 minideps.add({source = 'ibhagwan/fzf-lua'})
 local fzf = require('fzf-lua')
 fzf.setup({
-    winopts = {preview = {default = 'bat', layout = 'flex', horizontal = 'right:40%'}},
+    winopts = {
+        preview = {default = 'bat', layout = 'flex', horizontal = 'right:40%'}
+    },
     keymap = {
         builtin = {['<C-/>'] = 'toggle-preview', ['<C-p>'] = 'toggle-preview'},
-        fzf = {['shift-down'] = 'preview-page-down', ['shift-up'] = 'preview-page-up'}
+        fzf = {
+            ['shift-down'] = 'preview-page-down',
+            ['shift-up'] = 'preview-page-up'
+        }
     },
     files = {cmd = 'ag --hidden --ignore .git -g ""'},
     grep = {cmd = 'ag --vimgrep'}
@@ -257,9 +303,13 @@ fzf.setup({
 vim.keymap.set('n', '<Leader><Leader>f', fzf.files)
 vim.keymap.set('n', '<Leader><Leader>m', fzf.oldfiles)
 vim.keymap.set('n', '<Leader><Leader>b', fzf.buffers)
-vim.keymap.set('n', '<Leader><Leader>l', function() fzf.lines({winopts = {preview = {hidden = 'hidden'}}}) end)
+vim.keymap.set('n', '<Leader><Leader>l', function()
+    fzf.lines({winopts = {preview = {hidden = 'hidden'}}})
+end)
 vim.keymap.set('n', '<Leader><Leader>n', fzf.command_history)
-vim.keymap.set('n', '<Leader><Leader>p', function() fzf.registers({winopts = {preview = {hidden = 'hidden'}}}) end)
+vim.keymap.set('n', '<Leader><Leader>p', function()
+    fzf.registers({winopts = {preview = {hidden = 'hidden'}}})
+end)
 
 -- undotree
 minideps.add({source = 'mbbill/undotree'})
