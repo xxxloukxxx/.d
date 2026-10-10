@@ -20,8 +20,7 @@ vim.opt.listchars = {tab = '..', trail = '_', extends = '>', precedes = '<', nbs
 vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.laststatus = 3
-vim.opt.shortmess:append('I')
-vim.cmd.colorscheme('lunaperche')
+vim.opt.shortmess:append('Ic')
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -87,7 +86,7 @@ vim.api.nvim_create_autocmd('WinEnter', {
 })
 
 -- sessions
-vim.api.nvim_create_autocmd('BufWinLeave', {pattern = '?*', command = 'mkview'})
+vim.api.nvim_create_autocmd('BufWinLeave', {pattern = '?*', command = 'silent! mkview'})
 vim.api.nvim_create_autocmd('BufWinEnter', {pattern = '?*', command = 'silent! loadview'})
 
 -- number
@@ -148,7 +147,6 @@ if not vim.loop.fs_stat(mini_path) then
 end
 
 require('mini.deps').setup({path = {package = path_package}})
-
 require('mini.completion').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
@@ -158,7 +156,6 @@ require('mini.comment').setup()
 vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc', {remap = true})
 
 require('mini.basics').setup()
-require('mini.pick').setup()
 
 local statusline = require('mini.statusline')
 local mode_map = {
@@ -281,4 +278,3 @@ vim.api.nvim_set_hl(0, 'WinSeparator', {fg = '#7aa2f7', bold = true})
 minideps.add('stevearc/oil.nvim')
 require('oil').setup({view_options = {show_hidden = true}})
 vim.keymap.set('n', '<Leader>e', ':Oil<CR>', {silent = true})
-
