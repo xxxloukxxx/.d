@@ -91,7 +91,6 @@ vim.api.nvim_create_user_command('ToggleQuickfix', function()
     end
 end, {})
 
-
 -- Autocommands ===============================================================
 -- terminal
 vim.api.nvim_create_autocmd('WinEnter', {
@@ -205,9 +204,14 @@ require('conform').setup({
         css = {'prettier'},
         json = {'prettier'},
         yaml = {'prettier'},
-        markdown = {'prettier'}
+        markdown = {'prettier'},
+        make = {'mbake'}
     },
-    formatters = {['lua-format'] = {prepend_args = {'--column-limit=180'}}, ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}}}
+    formatters = {
+        ['lua-format'] = {prepend_args = {'--column-limit=180'}},
+        ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}},
+        ['mbake'] = {command = "mbake", args = {'format', '$FILENAME'}, stdin = false}
+    }
 })
 vim.api.nvim_create_user_command('Format', function(args)
     local range = nil
