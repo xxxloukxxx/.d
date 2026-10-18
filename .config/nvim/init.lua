@@ -60,6 +60,7 @@ vim.keymap.set('c', '<Up>', function() return vim.fn.pumvisible() == 1 and '<C-p
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>')
 vim.keymap.set('n', '<Leader>i', 'mK')
 vim.keymap.set('n', '<Leader>o', '`K')
+vim.keymap.set('n', "<leader><leader>c", "<cmd>ToggleQuickfix<CR>", {})
 
 -- Commandes perso ============================================================
 vim.api.nvim_create_user_command('CdCurrent', function()
@@ -74,6 +75,22 @@ vim.api.nvim_create_user_command('CdCurrent', function()
         print('Impossible de changer de répertoire pour ce buffer.')
     end
 end, {})
+
+vim.api.nvim_create_user_command('ToggleQuickfix', function()
+    local qf_exists = false
+    for _, win in ipairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            qf_exists = true
+            break
+        end
+    end
+    if qf_exists then
+        vim.cmd("cclose")
+    else
+        vim.cmd("copen")
+    end
+end, {})
+
 
 -- Autocommands ===============================================================
 -- terminal
@@ -285,3 +302,4 @@ require('marks').setup({
 -- sudo.nvim
 minideps.add({source = 'denialofsandwich/sudo.nvim', depends = {'MunifTanjim/nui.nvim'}})
 require('sudo').setup({commands = true})
+
