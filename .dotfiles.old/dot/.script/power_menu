@@ -1,0 +1,11 @@
+#!/bin/bash
+choice=`echo -e "Lock\nReboot\nShutdown" | dmenu`
+
+# execute the choice in background
+case "$choice" in
+   Lock) /usr/bin/i3lock -c 000000 & ;;
+   Reboot) /usr/bin/systemctl reboot & ;;
+   Shutdown) /usr/bin/systemctl poweroff & ;;
+   *) exit ;;
+esac
+

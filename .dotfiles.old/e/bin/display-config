@@ -1,0 +1,18 @@
+#!/bin/bash
+choice=`echo -e "0: LEFT/RIGHT\n1: LEFT/(right)\n2: (left)/RIGHT" | dmenu -n | cut -d ':' -f 1`
+ 
+# execute the choice in background
+case "$choice" in
+#  0) xrandr --output DP-1 --auto && xrandr --output HDMI-1 --auto --rotation left --left-of DP-1 & ;;
+   0) xrandr --output DP-1 --auto && xrandr --output HDMI-1 --auto --left-of DP-1 & ;;
+#  1) xrandr --output DP-1 --off && xrandr --output HDMI-1 --auto --rotation left & ;;
+   1) xrandr --output DP-1 --off && xrandr --output HDMI-1 --auto & ;;
+#  2) xrandr --output HDMI-1 --off && xrandr --output DP-1 --auto & ;;
+   2) xrandr --output HDMI-1 --off && xrandr --output DP-1 --auto & ;;
+  *) exit ;;
+esac
+
+sleep 1
+
+/usr/bin/feh --randomize --bg-fill ~/.w
+

@@ -1,0 +1,315 @@
+[
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "vintage-filter",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "vintage_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Transition Table",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "transition-table",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "time-source",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "time_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "stroke-glow-shadow",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "obs_stroke_filter",
+            "obs_glow_filter",
+            "obs_shadow_filter",
+            "obs_stroke_source",
+            "obs_glow_source",
+            "obs_shadow_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Source Copy",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "source-copy",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "Source Clone",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "source-clone",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "source-clone",
+            "source_clone_audio_wrapper_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Scene Notes Dock",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "scene-notes-dock",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "Scene Collection Manager",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "scene-collection-manager",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "Scene As Transition",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "scene-as-transition",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "scene_as_transition"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "retro-effects",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "obs_retro_effects_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "noise",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "obs_noise_source",
+            "obs_noise_displace_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Move Transition",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "move-transition",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "move_transition",
+            "move_transition_override_filter",
+            "move_source_filter",
+            "move_source_swap_filter",
+            "move_value_filter",
+            "move_audio_value_filter",
+            "audio_move_filter",
+            "move_action_filter",
+            "move_audio_action_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "linux-pipewire-audio",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "pipewire_audio_input_capture",
+            "pipewire_audio_output_capture",
+            "pipewire_audio_application_capture"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "libadvanced-scene-switcher",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "Gradient Source",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "gradient-source",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "gradient_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Draw",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "draw-dock",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "draw_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Downstream Keyer",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "downstream-keyer",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "ouput_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "command-source",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "command_source"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "color-monitor",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "vectorscope_source",
+            "waveform_source",
+            "histogram_source",
+            "net.nagater.obs-color-monitor.zebra_source",
+            "net.nagater.obs-color-monitor.zebra_filter",
+            "net.nagater.obs-color-monitor.falsecolor_source",
+            "net.nagater.obs-color-monitor.falsecolor_filter",
+            "net.nagater.obs-color-monitor.focuspeaking_source",
+            "net.nagater.obs-color-monitor.focuspeaking_filter",
+            "colormonitor_roi"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "Countdown Timers",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "ashmanix-countdown",
+        "outputs": [],
+        "services": [],
+        "sources": [],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "ashmanix-blur-filter",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "ashmanix_plugin_blur_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "advanced-masks",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "advanced_masks_filter"
+        ],
+        "version": ""
+    },
+    {
+        "display_name": "3D Effect",
+        "enabled": true,
+        "encoders": [],
+        "id": "",
+        "module_name": "3d-effect",
+        "outputs": [],
+        "services": [],
+        "sources": [
+            "3d_effect_filter"
+        ],
+        "version": ""
+    }
+]

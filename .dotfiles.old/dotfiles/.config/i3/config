@@ -1,0 +1,144 @@
+# General
+set $mod Mod4
+focus_follows_mouse no
+font pango:hack 10
+bindsym $mod+Return exec kitty
+bindcode $mod+40 exec --no-startup-id dmenu_run -fn hack-14
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+for_window [class="graph85emulator.exe"] floating enable
+for_window [class="obs"] floating enable
+
+# Colors/Borders/Gaps 
+smart_gaps on
+gaps inner 4px
+gaps outer 2px
+default_border pixel 1
+client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
+client.unfocused        #2e3440 #1f222d #888888 #1f222d
+client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+client.placeholder      #2e3440 #1f222d #888888 #1f222d
+client.urgent           #900000 #900000 #ffffff #900000
+client.background       #242424
+
+# Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id xset b 0
+exec_always --no-startup-id numlockx on
+#exec_always --no-startup-id nitrogen --set-zoom-fill --random /home/cedric/.w/
+exec_always --no-startup-id feh --randomize --bg-fill ~/.w
+
+# Some bindings
+bindsym $mod+Shift+Ctrl+S exec --no-startup-id flameshot gui
+#bindsym $mod+Shift+Ctrl+Delete exec --no-startup-id nitrogen --set-zoom-fill --random /home/cedric/.w/
+bindsym $mod+Shift+Ctrl+Delete exec --no-startup-id feh --randomize --bg-fill ~/.w
+
+# Audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &&  pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle &&  pkill -RTMIN+10 i3blocks
+
+bindsym $mod+k exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+bindsym $mod+l exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+bindsym $mod+j exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+
+# Select/Move/Modify/Kill container
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+q kill
+
+# Change container layout (stacked, tabbed, toggle split)
+floating_modifier $mod
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+bindcode $mod+10 workspace number $ws1
+bindcode $mod+11 workspace number $ws2
+bindcode $mod+12 workspace number $ws3
+bindcode $mod+13 workspace number $ws4
+bindcode $mod+14 workspace number $ws5
+bindcode $mod+15 workspace number $ws6
+bindcode $mod+16 workspace number $ws7
+bindcode $mod+17 workspace number $ws8
+bindcode $mod+18 workspace number $ws9
+bindcode $mod+19 workspace number $ws10
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Shift+p move workspace to output next
+bindcode $mod+Shift+10 move container to workspace number $ws1
+bindcode $mod+Shift+11 move container to workspace number $ws2
+bindcode $mod+Shift+12 move container to workspace number $ws3
+bindcode $mod+Shift+13 move container to workspace number $ws4
+bindcode $mod+Shift+14 move container to workspace number $ws5
+bindcode $mod+Shift+15 move container to workspace number $ws6
+bindcode $mod+Shift+16 move container to workspace number $ws7
+bindcode $mod+Shift+17 move container to workspace number $ws8
+bindcode $mod+Shift+18 move container to workspace number $ws9
+bindcode $mod+Shift+19 move container to workspace number $ws10
+
+# Resize window
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Bar
+bar {
+        #status_command i3status
+        status_command i3blocks
+        font pango:Hack, FontAwesome 14
+    	colors {
+            separator  #1f222d
+            background #1f222d
+            statusline #81a1c1
+            focused_workspace  #1f222d #1f222d    #81a1c1
+            active_workspace   #1f222d #252936    #5e81ac
+            inactive_workspace #1f222d #1f222d    #4c566a
+            urgent_workspace   #1f222d #1f222d    #ee829f
+            binding_mode       #1f222d #81a1c1    #2e3440
+    	}
+}
+
+# Lock/Reboot/Shutdown
+set $modsys "(l)ock - (r)eboot - (s)hutdown"
+mode $modsys {
+		bindsym r exec --no-startup-id systemctl reboot
+		bindsym s exec --no-startup-id systemctl poweroff
+		bindsym l exec --no-startup-id i3lock -c 000000, mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+Delete mode $modsys
+

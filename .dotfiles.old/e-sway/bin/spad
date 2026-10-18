@@ -1,0 +1,12 @@
+#!/bin/bash
+
+t=`xdotool search --class spad`
+
+if [ -z "$t" ]
+then
+    st -c spad
+else
+    swaymsg scratchpad show
+    # xdotool search --class spad windowclose
+fi
+

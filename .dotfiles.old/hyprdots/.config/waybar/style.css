@@ -1,0 +1,64 @@
+@define-color background #000;
+@define-color primary #fff;
+
+* {
+  border: none;
+  border-radius: 0;
+  font-size: 20px;
+  font-family: "agave";
+  min-height: 0;
+}
+window#waybar {
+  all: unset;
+  background: alpha(@background, 1);
+}
+
+.modules-left {
+  background: alpha(@background, 0);
+}
+
+.modules-center {
+  background: alpha(@background, 0);
+}
+
+.modules-right {
+  background: alpha(@background, 0);
+}
+
+#clock {
+  color: @primary;
+  transition: all 0.3s ease;
+}
+
+#pulseaudio {
+  color: @primary;
+  transition: all 0.3s ease;
+}
+
+#workspaces {
+}
+
+#workspaces button {
+  all: unset;
+  padding: 0px 2px;
+  color: alpha(@primary, 0.5);
+  transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+  color: @primary;
+}
+
+#workspaces button.empty {
+  color: alpha(@primary, 0.3);
+  border: none;
+}
+
+#workspaces button.empty.active {
+  color: @primary;
+  border: none;
+}
+
+#tray {
+  padding: 0px 0px 0px 5px;
+}

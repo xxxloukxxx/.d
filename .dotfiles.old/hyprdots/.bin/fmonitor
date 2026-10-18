@@ -1,0 +1,17 @@
+#!/bin/sh
+
+left=HDMI-A-1
+right=DP-1
+
+choice=`/usr/bin/echo -e "Both\nLeft\nRight" | fuzzel -l 3 --dmenu`
+
+# execute the choice in background
+case "$choice" in
+   Both) sh -c "hyprctl -q keyword monitor $left,disable && hyprctl -q keyword monitor $right,disable && hyprctl -q keyword monitor $left,prefered,auto,auto,transform,1 && hyprctl -q keyword monitor $right,prefered,auto,auto" & ;;
+   Left) sh -c "hyprctl -q keyword monitor $left,disable && hyprctl -q keyword monitor $right,disable && hyprctl -q keyword monitor $left,prefered,auto,auto,transform,1" & ;;
+   Right) sh -c "hyprctl -q keyword monitor $left,disable && hyprctl -q keyword monitor $right,disable && hyprctl -q keyword monitor $right,prefered,auto,auto" & ;;
+   *) exit ;;
+esac
+
+pkill hyprpaper
+hyprpaper &

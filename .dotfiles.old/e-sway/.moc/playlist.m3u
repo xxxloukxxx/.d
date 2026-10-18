@@ -1,0 +1,8 @@
+#EXTM3U
+#MOCSERIAL: 512
+#EXTINF:-1,Radio Nova Paris
+https://novazz.ice.infomaniak.ch/novazz-128.mp3
+#EXTINF:-1,Radio Nova Bordeaux
+https://snb.ice.infomaniak.ch/snb-high.mp3
+#EXTINF:-1,France Info
+http://icecast.radiofrance.fr/franceinfo-midfi.mp3

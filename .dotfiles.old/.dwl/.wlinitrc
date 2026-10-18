@@ -1,0 +1,5 @@
+#!/bin/bash
+/usr/bin/systemctl --user start xdg-desktop-portal
+sleep 1
+/usr/bin/systemctl --user start xdg-desktop-portal-wlr
+

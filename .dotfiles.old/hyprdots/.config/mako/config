@@ -1,0 +1,30 @@
+# Take a look at the mako manpage with the command:
+#   man 5 mako
+# To view all configuration options.
+
+font=agave 14
+# format=<b>%a ⏵</b> %s\n%b
+sort=-time
+# output=DP-2
+layer=overlay
+anchor=top-right
+background-color=#00000099
+text-alignment=center
+# width=300
+# height=110
+margin=5
+padding=10
+border-size=1
+border-color=#88c0d0
+border-radius=0
+icons=0
+max-icon-size=64
+default-timeout=2000
+
+[urgency=normal]
+border-color=#d08770
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0
+

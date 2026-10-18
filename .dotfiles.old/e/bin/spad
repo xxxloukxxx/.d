@@ -1,0 +1,13 @@
+#!/bin/bash
+
+t=`xdotool search --class spad`
+
+if [ -z "$t" ]
+then
+    alacritty --class spad
+    # st -c spad
+else
+    i3-msg scratchpad show
+    # xdotool search --class spad windowclose
+fi
+

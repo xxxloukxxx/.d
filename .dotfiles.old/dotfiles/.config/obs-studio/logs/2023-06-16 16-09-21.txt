@@ -1,0 +1,334 @@
+16:09:21.657: Using EGL/X11
+16:09:21.657: CPU Name: Intel(R) Core(TM) i3-8100 CPU @ 3.60GHz
+16:09:21.657: CPU Speed: 3426.279MHz
+16:09:21.657: Physical Cores: 4, Logical Cores: 4
+16:09:21.657: Physical Memory: 3775MB Total, 3143MB Free
+16:09:21.657: Kernel Version: Linux 6.1.0-9-amd64
+16:09:21.657: Distribution: "Debian GNU/Linux" "12"
+16:09:21.657: Session Type: x11
+16:09:21.657: Window System: X11.0, Vendor: The X.Org Foundation, Version: 1.21.1
+16:09:21.659: Qt Version: 5.15.8 (runtime), 5.15.8 (compiled)
+16:09:21.659: Portable mode: false
+16:09:21.753: OBS 29.0.2.1-1+b1 (linux)
+16:09:21.753: ---------------------------------
+16:09:21.754: ---------------------------------
+16:09:21.754: audio settings reset:
+16:09:21.754: 	samples per sec: 48000
+16:09:21.754: 	speakers:        2
+16:09:21.754: 	max buffering:   960 milliseconds
+16:09:21.754: 	buffering type:  dynamically increasing
+16:09:21.764: ---------------------------------
+16:09:21.764: Initializing OpenGL...
+16:09:21.824: Loading up OpenGL on adapter Intel Mesa Intel(R) UHD Graphics 630 (CFL GT2)
+16:09:21.824: OpenGL loaded successfully, version 4.6 (Core Profile) Mesa 22.3.6, shading language 4.60
+16:09:21.864: ---------------------------------
+16:09:21.864: video settings reset:
+16:09:21.864: 	base resolution:   1280x720
+16:09:21.864: 	output resolution: 1280x720
+16:09:21.864: 	downscale filter:  Bicubic
+16:09:21.864: 	fps:               60/1
+16:09:21.864: 	format:            NV12
+16:09:21.864: 	YUV mode:          Rec. 709/Partial
+16:09:21.864: NV12 texture support not available
+16:09:21.864: P010 texture support not available
+16:09:21.869: Audio monitoring device:
+16:09:21.869: 	name: Par défaut
+16:09:21.869: 	id: default
+16:09:21.869: ---------------------------------
+16:09:21.872: Failed to load 'en-US' text for module: 'decklink-captions.so'
+16:09:21.875: Failed to load 'en-US' text for module: 'decklink-output-ui.so'
+16:09:21.878: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+16:09:21.878: Failed to initialize module 'decklink.so'
+16:09:22.351: [pipewire] No captures available
+16:09:22.362: v4l2loopback not installed, virtual camera disabled
+16:09:22.543: VAAPI: API version 1.17
+16:09:22.544: FFmpeg VAAPI H264 encoding supported
+16:09:22.576: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.1.0 | RPC Version: 1)
+16:09:22.576: [obs-websocket] [obs_module_load] Qt version (compile-time): 5.15.8 | Qt version (run-time): 5.15.8
+16:09:22.576: [obs-websocket] [obs_module_load] Linked ASIO Version: 102201
+16:09:22.602: [obs-websocket] [obs_module_load] Module loaded.
+16:09:22.618: [vlc-video]: VLC 3.0.18 Vetinari found, VLC video source enabled
+16:09:22.618: ---------------------------------
+16:09:22.618:   Loaded Modules:
+16:09:22.618:     vlc-video.so
+16:09:22.618:     text-freetype2.so
+16:09:22.618:     rtmp-services.so
+16:09:22.618:     obs-x264.so
+16:09:22.618:     obs-websocket.so
+16:09:22.618:     obs-transitions.so
+16:09:22.618:     obs-outputs.so
+16:09:22.618:     obs-filters.so
+16:09:22.618:     obs-ffmpeg.so
+16:09:22.618:     linux-v4l2.so
+16:09:22.618:     linux-pulseaudio.so
+16:09:22.618:     linux-pipewire.so
+16:09:22.618:     linux-jack.so
+16:09:22.618:     linux-capture.so
+16:09:22.618:     linux-alsa.so
+16:09:22.618:     image-source.so
+16:09:22.618:     frontend-tools.so
+16:09:22.618:     decklink-output-ui.so
+16:09:22.618:     decklink-captions.so
+16:09:22.618: ---------------------------------
+16:09:22.619: ==== Startup complete ===============================================
+16:09:22.671: All scene data cleared
+16:09:22.672: ------------------------------------------------
+16:09:22.675: pulse-input: Server name: 'pulseaudio 16.1'
+16:09:22.675: pulse-input: Audio format: s16le, 48000 Hz, 2 channels
+16:09:22.675: pulse-input: Started recording from 'alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo.monitor' (default)
+16:09:22.675: [Loaded global audio device]: 'Audio du Bureau'
+16:09:22.682: pulse-input: Server name: 'pulseaudio 16.1'
+16:09:22.682: pulse-input: Audio format: s16le, 44100 Hz, 1 channels
+16:09:22.682: pulse-input: Started recording from 'alsa_input.usb-H264_USB_Camera_H264_USB_Camera_2020032801-03.mono-fallback' (default)
+16:09:22.682: [Loaded global audio device]: 'Mic/Aux'
+16:09:22.684: Switched to scene 'Scène'
+16:09:22.684: ------------------------------------------------
+16:09:22.684: Loaded scenes:
+16:09:22.684: - scene 'Scène':
+16:09:22.684: ------------------------------------------------
+16:09:23.247: adding 42 milliseconds of audio buffering, total audio buffering is now 42 milliseconds (source: Mic/Aux)
+16:09:23.247: 
+16:09:58.971: Import Scene Collection: Sans nom 2 (Sans_nom_2) - SUCCESS
+16:10:03.816: pulse-input: Stopped recording from 'alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo.monitor'
+16:10:03.816: pulse-input: Got 7824 packets with 1892544 frames
+16:10:03.816: pulse-input: Stopped recording from 'alsa_input.usb-H264_USB_Camera_H264_USB_Camera_2020032801-03.mono-fallback'
+16:10:03.816: pulse-input: Got 4117 packets with 1825068 frames
+16:10:03.845: All scene data cleared
+16:10:03.845: ------------------------------------------------
+16:10:03.862: [window-capture: 'Calc (Ecran)'] update settings:
+16:10:03.862: 	title: unknown
+16:10:03.862: 	class: unknown
+16:10:03.862: 
+16:10:03.863: [window-capture: 'Calc (Clavier)'] update settings:
+16:10:03.863: 	title: unknown
+16:10:03.863: 	class: unknown
+16:10:03.863: 
+16:10:03.864: xshm-input: Geometry 1680x1050 @ 0,0
+16:10:03.872: v4l2-input: Start capture from /dev/video2
+16:10:03.874: v4l2-input: Input: 0
+16:10:03.906: v4l2-input: Resolution: 1920x1080
+16:10:03.906: v4l2-input: Pixelformat: H264
+16:10:03.906: v4l2-input: Linesize: 3840 Bytes
+16:10:03.906: v4l2-input: Framerate: 30.00 fps
+16:10:03.913: v4l2-input: /dev/video2: select timeout set to 166666 (5x frame periods)
+16:10:03.915: pulse-input: Server name: 'pulseaudio 16.1'
+16:10:03.915: pulse-input: Audio format: s16le, 48000 Hz, 1 channels
+16:10:03.916: pulse-input: Started recording from 'alsa_input.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.mono-fallback'
+16:10:04.142: Switched to scene 'Main'
+16:10:04.159: ------------------------------------------------
+16:10:04.159: Loaded scenes:
+16:10:04.159: - scene 'Main':
+16:10:04.185:     - source: 'ImageBasGauche' (image_source)
+16:10:04.185:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:10:04.185:     - source: 'Micro' (pulse_input_capture)
+16:10:04.185:         - filter: 'Suppression du bruit' (noise_suppress_filter_v2)
+16:10:04.185:         - filter: 'Compresseur' (compressor_filter)
+16:10:04.185:         - filter: 'Égaliseur 3 bandes' (basic_eq_filter)
+16:10:04.185:     - source: 'Cam' (v4l2_input)
+16:10:04.186:     - source: 'PIP' (xshm_input)
+16:10:04.186:     - source: 'Image' (image_source)
+16:10:04.186:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:10:04.186:     - source: 'Titre' (text_ft2_source_v2)
+16:10:04.186:     - source: 'Calc (Clavier)' (xcomposite_input)
+16:10:04.186:     - source: 'Calc (Ecran)' (xcomposite_input)
+16:10:04.186: - scene 'Fullscreen':
+16:10:04.186:     - source: 'Micro' (pulse_input_capture)
+16:10:04.186:         - filter: 'Suppression du bruit' (noise_suppress_filter_v2)
+16:10:04.186:         - filter: 'Compresseur' (compressor_filter)
+16:10:04.186:         - filter: 'Égaliseur 3 bandes' (basic_eq_filter)
+16:10:04.186:     - source: 'PIP' (xshm_input)
+16:10:04.186:     - source: 'Image' (image_source)
+16:10:04.186:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:10:04.186:     - source: 'Titre' (text_ft2_source_v2)
+16:10:04.186:     - source: 'Calc (Clavier)' (xcomposite_input)
+16:10:04.186:     - source: 'Calc (Ecran)' (xcomposite_input)
+16:10:04.186: ------------------------------------------------
+16:10:04.210: Switched to scene collection 'Sans nom 2' (Sans_nom_2.json)
+16:10:04.210: ------------------------------------------------
+16:10:04.863: v4l2-input: /dev/video2: select timed out
+16:10:04.863: v4l2-input: /dev/video2: failed to log status
+16:11:38.223: ---------------------------------
+16:11:38.223: [x264 encoder: 'simple_video_recording'] preset: veryfast
+16:11:38.223: [x264 encoder: 'simple_video_recording'] profile: high
+16:11:38.224: [x264 encoder: 'simple_video_recording'] settings:
+16:11:38.224: 	rate_control: CRF
+16:11:38.224: 	bitrate:      0
+16:11:38.224: 	buffer size:  0
+16:11:38.224: 	crf:          21
+16:11:38.224: 	fps_num:      60
+16:11:38.224: 	fps_den:      1
+16:11:38.224: 	width:        1280
+16:11:38.224: 	height:       720
+16:11:38.224: 	keyint:       250
+16:11:38.224: 
+16:11:38.243: ---------------------------------
+16:11:38.243: [FFmpeg aac encoder: 'simple_aac_recording'] bitrate: 192, channels: 2, channel_layout: stereo
+16:11:38.243: 
+16:11:38.250: ==== Recording Start ===============================================
+16:11:38.250: [ffmpeg muxer: 'simple_file_output'] Writing file '/home/cedric/2023-06-16 16-11-38.mkv'...
+16:11:43.249: [ffmpeg muxer: 'simple_file_output'] Output of file '/home/cedric/2023-06-16 16-11-38.mkv' stopped
+16:11:43.250: Output 'simple_file_output': stopping
+16:11:43.250: Output 'simple_file_output': Total frames output: 277
+16:11:43.250: Output 'simple_file_output': Total drawn frames: 243 (300 attempted)
+16:11:43.250: Output 'simple_file_output': Number of lagged frames due to rendering lag/stalls: 57 (19.0%)
+16:11:43.251: ==== Recording Stop ================================================
+16:11:50.223: v4l2-input: /dev/video2: Stopped capture after 2110 frames
+16:11:50.279: pulse-input: Stopped recording from 'alsa_input.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.mono-fallback'
+16:11:50.279: pulse-input: Got 10533 packets with 5105376 frames
+16:11:50.298: All scene data cleared
+16:11:50.298: ------------------------------------------------
+16:11:50.301: pulse-input: Server name: 'pulseaudio 16.1'
+16:11:50.302: pulse-input: Audio format: s16le, 48000 Hz, 2 channels
+16:11:50.302: pulse-input: Started recording from 'alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo.monitor' (default)
+16:11:50.302: [Loaded global audio device]: 'Audio du Bureau'
+16:11:50.311: pulse-input: Server name: 'pulseaudio 16.1'
+16:11:50.311: pulse-input: Audio format: s16le, 44100 Hz, 1 channels
+16:11:50.311: pulse-input: Started recording from 'alsa_input.usb-H264_USB_Camera_H264_USB_Camera_2020032801-03.mono-fallback' (default)
+16:11:50.311: [Loaded global audio device]: 'Mic/Aux'
+16:11:50.314: Switched to scene 'Scène'
+16:11:50.314: ------------------------------------------------
+16:11:50.314: Loaded scenes:
+16:11:50.314: - scene 'Scène':
+16:11:50.314: ------------------------------------------------
+16:11:50.317: Switched to scene collection 'Sans nom' (Sans nom.json)
+16:11:50.317: ------------------------------------------------
+16:11:54.263: pulse-input: Stopped recording from 'alsa_output.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.analog-stereo.monitor'
+16:11:54.263: pulse-input: Got 390 packets with 94368 frames
+16:11:54.263: pulse-input: Stopped recording from 'alsa_input.usb-H264_USB_Camera_H264_USB_Camera_2020032801-03.mono-fallback'
+16:11:54.263: pulse-input: Got 389 packets with 172184 frames
+16:11:54.288: All scene data cleared
+16:11:54.288: ------------------------------------------------
+16:11:54.513: pulse-input: Server name: 'pulseaudio 16.1'
+16:11:54.514: pulse-input: Audio format: s16le, 48000 Hz, 1 channels
+16:11:54.514: pulse-input: Started recording from 'alsa_input.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.mono-fallback'
+16:11:54.514: v4l2-input: Start capture from /dev/video2
+16:11:54.515: v4l2-input: Input: 0
+16:11:54.547: v4l2-input: Resolution: 1920x1080
+16:11:54.547: v4l2-input: Pixelformat: H264
+16:11:54.547: v4l2-input: Linesize: 3840 Bytes
+16:11:54.547: v4l2-input: Framerate: 30.00 fps
+16:11:54.550: v4l2-input: /dev/video2: select timeout set to 166666 (5x frame periods)
+16:11:54.550: xshm-input: Geometry 1680x1050 @ 0,0
+16:11:54.554: [window-capture: 'Calc (Clavier)'] update settings:
+16:11:54.554: 	title: unknown
+16:11:54.554: 	class: unknown
+16:11:54.554: 
+16:11:54.555: [window-capture: 'Calc (Ecran)'] update settings:
+16:11:54.555: 	title: unknown
+16:11:54.555: 	class: unknown
+16:11:54.555: 
+16:11:54.564: Switched to scene 'Main'
+16:11:54.580: ------------------------------------------------
+16:11:54.580: Loaded scenes:
+16:11:54.580: - scene 'Main':
+16:11:54.580:     - source: 'ImageBasGauche' (image_source)
+16:11:54.580:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:11:54.580:     - source: 'Micro' (pulse_input_capture)
+16:11:54.580:         - filter: 'Suppression du bruit' (noise_suppress_filter_v2)
+16:11:54.580:         - filter: 'Compresseur' (compressor_filter)
+16:11:54.580:         - filter: 'Égaliseur 3 bandes' (basic_eq_filter)
+16:11:54.581:     - source: 'Cam' (v4l2_input)
+16:11:54.581:     - source: 'PIP' (xshm_input)
+16:11:54.581:     - source: 'Image' (image_source)
+16:11:54.581:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:11:54.581:     - source: 'Titre' (text_ft2_source_v2)
+16:11:54.581:     - source: 'Calc (Clavier)' (xcomposite_input)
+16:11:54.581:     - source: 'Calc (Ecran)' (xcomposite_input)
+16:11:54.581: - scene 'Fullscreen':
+16:11:54.581:     - source: 'Micro' (pulse_input_capture)
+16:11:54.581:         - filter: 'Suppression du bruit' (noise_suppress_filter_v2)
+16:11:54.581:         - filter: 'Compresseur' (compressor_filter)
+16:11:54.581:         - filter: 'Égaliseur 3 bandes' (basic_eq_filter)
+16:11:54.581:     - source: 'PIP' (xshm_input)
+16:11:54.581:     - source: 'Image' (image_source)
+16:11:54.581:         - filter: 'Corrections colorimétrique' (color_filter_v2)
+16:11:54.581:     - source: 'Titre' (text_ft2_source_v2)
+16:11:54.581:     - source: 'Calc (Clavier)' (xcomposite_input)
+16:11:54.581:     - source: 'Calc (Ecran)' (xcomposite_input)
+16:11:54.581: ------------------------------------------------
+16:11:54.622: Removed scene collection 'Sans nom' (/home/cedric/.config/obs-studio/basic/scenes/Sans nom.json.bak.json), switched to 'Sans nom 2' (Sans_nom_2.json)
+16:11:54.622: ------------------------------------------------
+16:11:55.502: v4l2-input: /dev/video2: select timed out
+16:11:55.502: v4l2-input: /dev/video2: failed to log status
+16:12:03.818: ------------------------------------------------
+16:12:03.818: Renamed scene collection to 'Math' (Math.json)
+16:12:03.818: ------------------------------------------------
+16:12:08.188: ==== Shutting down ==================================================
+16:12:08.216: pulse-input: Stopped recording from 'alsa_input.usb-046d_G435_Wireless_Gaming_Headset_V001008005.1-01.mono-fallback'
+16:12:08.216: pulse-input: Got 1369 packets with 670224 frames
+16:12:08.268: v4l2-input: /dev/video2: Stopped capture after 254 frames
+16:12:08.346: All scene data cleared
+16:12:08.346: ------------------------------------------------
+16:12:08.415: [obs-websocket] [obs_module_unload] Shutting down...
+16:12:08.416: [obs-websocket] [obs_module_unload] Finished shutting down.
+16:12:08.425: [Scripting] Total detached callbacks: 0
+16:12:08.425: Freeing OBS context data
+16:12:08.458: == Profiler Results =============================
+16:12:08.458: run_program_init: 1269.68 ms
+16:12:08.458:  ┣OBSApp::AppInit: 14.745 ms
+16:12:08.458:  ┃ ┗OBSApp::InitLocale: 6.988 ms
+16:12:08.458:  ┗OBSApp::OBSInit: 1113.21 ms
+16:12:08.458:    ┣obs_startup: 1.833 ms
+16:12:08.458:    ┗OBSBasic::OBSInit: 1016.35 ms
+16:12:08.458:      ┣OBSBasic::InitBasicConfig: 0.07 ms
+16:12:08.458:      ┣OBSBasic::ResetAudio: 0.095 ms
+16:12:08.458:      ┣OBSBasic::ResetVideo: 114.883 ms
+16:12:08.458:      ┣OBSBasic::InitOBSCallbacks: 0.017 ms
+16:12:08.458:      ┣OBSBasic::InitHotkeys: 0.043 ms
+16:12:08.458:      ┣obs_load_all_modules2: 748.729 ms
+16:12:08.458:      ┃ ┣obs_init_module(decklink-captions.so): 0 ms
+16:12:08.458:      ┃ ┣obs_init_module(decklink-output-ui.so): 0 ms
+16:12:08.458:      ┃ ┣obs_init_module(decklink.so): 0.225 ms
+16:12:08.458:      ┃ ┣obs_init_module(frontend-tools.so): 60.498 ms
+16:12:08.458:      ┃ ┣obs_init_module(image-source.so): 0.006 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-alsa.so): 0.002 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-capture.so): 0.829 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-jack.so): 0.001 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-pipewire.so): 382.23 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-pulseaudio.so): 0.003 ms
+16:12:08.458:      ┃ ┣obs_init_module(linux-v4l2.so): 3.299 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-ffmpeg.so): 21.831 ms
+16:12:08.458:      ┃ ┃ ┗nvenc_check: 0.639 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-filters.so): 0.036 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-outputs.so): 0.004 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-transitions.so): 0.011 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-websocket.so): 25.615 ms
+16:12:08.458:      ┃ ┣obs_init_module(obs-x264.so): 0.002 ms
+16:12:08.458:      ┃ ┣obs_init_module(rtmp-services.so): 1.695 ms
+16:12:08.458:      ┃ ┣obs_init_module(text-freetype2.so): 0.014 ms
+16:12:08.458:      ┃ ┗obs_init_module(vlc-video.so): 5.11 ms
+16:12:08.458:      ┣OBSBasic::ResetOutputs: 0.12 ms
+16:12:08.458:      ┣OBSBasic::CreateHotkeys: 0.039 ms
+16:12:08.458:      ┣OBSBasic::InitService: 1.793 ms
+16:12:08.458:      ┣OBSBasic::InitPrimitives: 0.103 ms
+16:12:08.458:      ┗OBSBasic::Load: 60.285 ms
+16:12:08.458: obs_hotkey_thread(25 ms): min=0.089 ms, median=0.811 ms, max=18.747 ms, 99th percentile=14.367 ms, 100% below 25 ms
+16:12:08.458: audio_thread(Audio): min=0.007 ms, median=0.137 ms, max=20.987 ms, 99th percentile=2.631 ms
+16:12:08.458:  ┗receive_audio: min=0.007 ms, median=1.615 ms, max=12.228 ms, 99th percentile=8.404 ms, 0.0300819 calls per parent call
+16:12:08.458:    ┣buffer_audio: min=0.001 ms, median=0.003 ms, max=0.914 ms, 99th percentile=0.024 ms
+16:12:08.458:    ┗do_encode: min=0.059 ms, median=1.607 ms, max=12.201 ms, 99th percentile=8.398 ms
+16:12:08.458:      ┣encode(simple_aac_recording): min=0.048 ms, median=1.584 ms, max=9.174 ms, 99th percentile=6.499 ms
+16:12:08.458:      ┗send_packet: min=0.001 ms, median=0.013 ms, max=10.098 ms, 99th percentile=0.405 ms
+16:12:08.458: obs_graphics_thread(16.6667 ms): min=0.024 ms, median=13.534 ms, max=291.103 ms, 99th percentile=25.529 ms, 77.4326% below 16.667 ms
+16:12:08.458:  ┣tick_sources: min=0 ms, median=11.144 ms, max=287.253 ms, 99th percentile=21.168 ms
+16:12:08.458:  ┣output_frame: min=0.011 ms, median=0.747 ms, max=26.376 ms, 99th percentile=2.848 ms
+16:12:08.458:  ┃ ┣gs_context(video->graphics): min=0.011 ms, median=0.73 ms, max=26.376 ms, 99th percentile=2.815 ms
+16:12:08.458:  ┃ ┃ ┣render_video: min=0.007 ms, median=0.487 ms, max=26.13 ms, 99th percentile=2.373 ms
+16:12:08.458:  ┃ ┃ ┃ ┣render_main_texture: min=0.005 ms, median=0.481 ms, max=26.127 ms, 99th percentile=2.361 ms
+16:12:08.458:  ┃ ┃ ┃ ┣render_convert_texture: min=0.021 ms, median=0.031 ms, max=3.135 ms, 99th percentile=0.103 ms, 0.0249949 calls per parent call
+16:12:08.458:  ┃ ┃ ┃ ┗stage_output_texture: min=0.01 ms, median=0.016 ms, max=0.534 ms, 99th percentile=0.062 ms, 0.0249949 calls per parent call
+16:12:08.458:  ┃ ┃ ┣gs_flush: min=0.002 ms, median=0.202 ms, max=1.467 ms, 99th percentile=0.526 ms
+16:12:08.458:  ┃ ┃ ┗download_frame: min=0 ms, median=0.135 ms, max=0.384 ms, 99th percentile=0.368 ms, 0.0249949 calls per parent call
+16:12:08.458:  ┃ ┗output_video_data: min=0.304 ms, median=0.434 ms, max=3.34 ms, 99th percentile=1.765 ms, 0.024892 calls per parent call
+16:12:08.458:  ┗render_displays: min=0.002 ms, median=1.091 ms, max=35.313 ms, 99th percentile=3.763 ms
+16:12:08.458: video_thread(video): min=0.001 ms, median=2.355 ms, max=17.662 ms, 99th percentile=12.577 ms
+16:12:08.458:  ┗receive_video: min=1.174 ms, median=2.141 ms, max=17.659 ms, 99th percentile=10.346 ms, 1.22727 calls per parent call
+16:12:08.458:    ┗do_encode: min=1.173 ms, median=2.14 ms, max=17.658 ms, 99th percentile=10.346 ms
+16:12:08.458:      ┣encode(simple_video_recording): min=1.167 ms, median=2.088 ms, max=10.325 ms, 99th percentile=9.409 ms
+16:12:08.458:      ┗send_packet: min=0.002 ms, median=0.017 ms, max=15.89 ms, 99th percentile=2.179 ms, 0.936027 calls per parent call
+16:12:08.458: =================================================
+16:12:08.459: == Profiler Time Between Calls ==================
+16:12:08.459: obs_hotkey_thread(25 ms): min=25.19 ms, median=25.99 ms, max=44.071 ms, 5.88839% within ±2% of 25 ms (0% lower, 94.1116% higher)
+16:12:08.459: obs_graphics_thread(16.6667 ms): min=8.65 ms, median=16.665 ms, max=291.112 ms, 58.1833% within ±2% of 16.667 ms (20.2963% lower, 21.5204% higher)
+16:12:08.459: =================================================
+16:12:08.519: Number of memory leaks: 0

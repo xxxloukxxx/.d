@@ -1,0 +1,17 @@
+[Desktop Entry]
+FullScreen=false
+
+[MainWindow]
+2 screens: Height=1036
+2 screens: Width=950
+2 screens: XPosition=2642
+2 screens: YPosition=7
+DP-1 HDMI-1=HDMI-1
+State=AAAA/wAAAAD9AAAAAAAAA7YAAAPRAAAABAAAAAQAAAAIAAAACPwAAAADAAAAAQAAAAEAAAAsAHEAdQBpAGMAawBBAG4AbgBvAHQAYQB0AGkAbwBuAFQAbwBvAGwAQgBhAHICAAAAAP////8AAAAAAAAAAAAAAAIAAAABAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAAAIAAAABAAAAIgBhAG4AbgBvAHQAYQB0AGkAbwBuAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAA==
+ToolBarsMovable=Disabled
+
+[Recent Files]
+File1[$e]=$HOME/Documents/Boulot/docs/actp/actp-example.pdf
+File2[$e]=$HOME/Documents/Boulot/docs/actp/flash-example.pdf
+Name1[$e]=actp-example.pdf
+Name2[$e]=flash-example.pdf

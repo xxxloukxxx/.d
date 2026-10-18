@@ -1,0 +1,14 @@
+#!/bin/bash
+choice=`mpc playlist -f "%position% %name%" | dmenu -n -l 10 | cut -d ' ' -f 1`
+
+/usr/bin/mpc play $choice
+
+# execute the choice in background
+# case "$choice" in
+#    0) /usr/bin/mpc play & ;;
+#    1) /usr/bin/mpc stop & ;;
+#    2) /usr/bin/mpc next & ;;
+#    3) /usr/bin/mpc prev & ;;
+#    *) exit ;;
+# esac
+

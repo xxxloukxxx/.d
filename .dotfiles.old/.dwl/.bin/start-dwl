@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/local/bin/someblocks -p | /usr/local/bin/dwl -s ~/.wlinitrc
+

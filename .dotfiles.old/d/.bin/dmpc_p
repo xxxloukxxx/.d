@@ -1,0 +1,6 @@
+#!/bin/bash
+choice=`mpc playlist -f "%position% %name%" | dmenu -l 10 | cut -d ' ' -f 1`
+
+/usr/bin/mpc play $choice
+
+
