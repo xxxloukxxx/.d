@@ -87,9 +87,9 @@ static const char* dmocpinfo[]    = { "dmocpinfo", NULL };
 static const char* upvol[]        = { "vol.sh", "up", NULL };
 static const char* downvol[]      = { "vol.sh", "dn", NULL };
 static const char* mutevol[]      = { "vol.sh", "mute", NULL };
-static const char spadname[]      = "spad";
-static const char* spadcmd[]      = { "st", "-t", spadname, NULL };
-static const char* spcalccmd[]    = { "st", "-t", spadname, "-g", "50x20", "-e", "bc", "-ql", NULL };
+/* static const char spadname[]      = "spad"; */
+/* static const char* spadcmd[]      = { "st", "-t", spadname, NULL }; */
+/* static const char* spcalccmd[]    = { "st", "-t", spadname, "-g", "50x20", "-e", "bc", "-ql", NULL }; */
 static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 
 #include <X11/XF86keysym.h>
@@ -131,7 +131,7 @@ static const Key keys[] = {
     /* --- adajacent-tag --- */
 
     /* --- scratchpad --- */
-    { MODKEY, XK_Escape, togglescratch, { .v = spadcmd } }, //
+    /* { MODKEY, XK_Escape, togglescratch, { .v = spadcmd } }, // */
     // { MODKEY, XK_c, togglescratch, { .v = spcalccmd } },    //
     /* --- scratchpad --- */
 

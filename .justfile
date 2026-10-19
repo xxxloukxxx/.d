@@ -1,32 +1,20 @@
+set quiet
+
 all : sudoers apt-testing pack greetd bin zsh dotfiles suckless
 
 @sudoers:
   [ -f /etc/sudoers.d/cedric ] || { echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/cedric >/dev/null && sudo chmod 0440 /etc/sudoers.d/cedric; }
 
 @apt-testing:
-  sudo tee /etc/apt/preferences.d/99-testing > /dev/null << 'EOF'
-  Package: *
-  Pin: release a=stable
-  Pin-Priority: 900
-
-  Package: *
-  Pin: release a=testing
-  Pin-Priority: 90
-  EOF
-  sudo tee /etc/apt/sources.list.d/testing.sources > /dev/null << 'EOF'
-  Types: deb
-  URIs: http://deb.debian.org/debian/
-  Suites: testing
-  Components: main
-  Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-  EOF
-  sudo apt-get -y -qq update
+    sudo bash -c 'printf "Package: *\nPin: release a=stable\nPin-Priority: 900\n\nPackage: *\nPin: release a=testing\nPin-Priority: 90\n" > /etc/apt/preferences.d/99-testing'
+    sudo bash -c 'printf "Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: testing\nComponents: main\nSigned-By: /usr/share/keyrings/debian-archive-keyring.gpg\n" > /etc/apt/sources.list.d/testing.sources'
+    sudo apt-get -y -qq update
 
 @pack:
   sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
   sudo apt-get -y -qq install \
     build-essential meson cmake ninja-build gcc clang-format \
-    libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev libxcb-util-dev \
+    libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev libxcb-util-dev libcrypt-dev \
     fonts-agave fonts-hack fonts-hack-otf fonts-hack-ttf fonts-hack-web \
     vim vim-gtk3 git nnn sudo locales-all curl wget fzf tmux silversearcher-ag universal-ctags npm \
     xinit xorg xdotool numlockx x11-utils arandr greetd dunst pavucontrol pulseaudio pulseaudio-utils \
