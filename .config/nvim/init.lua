@@ -21,6 +21,8 @@ vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.shortmess:append('Ic')
+vim.opt.lazyredraw = true
+vim.opt.more = false
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -107,30 +109,39 @@ vim.api.nvim_create_autocmd('BufWinLeave', {pattern = '?*', command = 'silent! m
 vim.api.nvim_create_autocmd('BufWinEnter', {pattern = '?*', command = 'silent! loadview'})
 
 -- number
-vim.api.nvim_create_autocmd({'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter'},
-                            {pattern = '*', callback = function() if vim.wo.number and vim.api.nvim_get_mode().mode ~= 'i' then vim.wo.relativenumber = true end end})
+vim.api.nvim_create_autocmd({'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter'}, {
+    pattern = '*',
+    callback = function()
+        if vim.wo.number and vim.api.nvim_get_mode().mode ~= 'i' then vim.wo.relativenumber = true end
+    end
+})
 
-vim.api
-    .nvim_create_autocmd({'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}, {pattern = '*', callback = function() if vim.wo.number then vim.wo.relativenumber = false end end})
+vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}, {
+    pattern = '*',
+    callback = function() if vim.wo.number then vim.wo.relativenumber = false end end
+})
 
 -- Texlab
 vim.api.nvim_create_autocmd('FileType', {
     pattern = {'tex', 'plaintex', 'bib'},
-    callback = function()
+    callback = function(args)
+        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
         vim.lsp.start({
             name = 'texlab',
             cmd = {'texlab'},
-            root_dir = vim.fs.dirname(vim.fs.find({'.git', 'Makefile', '*.tex'}, {upward = true})[1]) or vim.fn.getcwd(),
+            root_dir = vim.fs.root(args.buf, {'Makefile', 'main.tex', '.git'}) or vim.fn.getcwd(),
             settings = {
                 texlab = {
-                    build = {executable = 'latexmk', args = {'-pdf', '-interaction=nonstopmode', '-synctex=1', '%f'}, onSave = false},
                     chktex = {onOpenAndSave = false},
-                    diagnosticsDelay = 300,
-                    latexFormatter = 'latexindent',
-                    latexindent = {modifyLineBreaks = true}
+                    diagnosticsDelay = 200,
+                    build = {
+                        executable = 'latexmk',
+                        args = {'-pdf', '-interaction=nonstopmode', '-synctex=1', '%f'},
+                        onSave = false
+                    },
                 }
             }
-        })
+        }, {bufnr = args.buf})
     end
 })
 
@@ -138,8 +149,8 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'help',
     callback = function(args)
-        vim.keymap.set('n', '<CR>', '<C-]>', {buffer = args.buf, silent = true, desc = 'Aller au tag (aide)'})
-        vim.keymap.set('n', '<BS>', '<C-t>', {buffer = args.buf, silent = true, desc = 'Retour historique (aide)'})
+        vim.keymap.set('n', '<CR>', '<C-]>', {buffer = args.buf, silent = true})
+        vim.keymap.set('n', '<BS>', '<C-t>', {buffer = args.buf, silent = true})
     end
 })
 
@@ -159,12 +170,24 @@ require('mini.basics').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.ai').setup()
--- require('mini.cursorword').setup()
+
 require('mini.comment').setup()
 vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc', {remap = true})
 
 local statusline = require('mini.statusline')
-local mode_map = {n = 'N', i = 'I', v = 'V', V = 'V-L', ['\22'] = 'V-B', c = 'C', s = 'S', S = 'S-L', ['\19'] = 'S-B', R = 'R', t = 'T'}
+local mode_map = {
+    n = 'N',
+    i = 'I',
+    v = 'V',
+    V = 'V-L',
+    ['\22'] = 'V-B',
+    c = 'C',
+    s = 'S',
+    S = 'S-L',
+    ['\19'] = 'S-B',
+    R = 'R',
+    t = 'T'
+}
 
 statusline.setup({
     set_vim_settings = true,
@@ -182,8 +205,8 @@ statusline.setup({
             local pct = math.floor((line / math.max(total_lines, 1)) * 100)
             local location = pct .. '%%' .. ' ' .. line .. ':' .. col
             return statusline.combine_groups({
-                {hl = mode_hl, strings = {mode_str}}, {hl = 'MiniStatuslineFilename', strings = {filename}}, '%<', '%=', {hl = 'MiniStatuslineFileinfo', strings = {filetype}},
-                {hl = mode_hl, strings = {location}}
+                {hl = mode_hl, strings = {mode_str}}, {hl = 'MiniStatuslineFilename', strings = {filename}}, '%<', '%=',
+                {hl = 'MiniStatuslineFileinfo', strings = {filetype}}, {hl = mode_hl, strings = {location}}
             })
         end
     }
@@ -208,7 +231,7 @@ require('conform').setup({
         make = {'mbake'}
     },
     formatters = {
-        ['lua-format'] = {prepend_args = {'--column-limit=180'}},
+        ['lua-format'] = {prepend_args = {'--column-limit=120'}},
         ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}},
         ['mbake'] = {command = "mbake", args = {'format', '$FILENAME'}, stdin = false}
     }
@@ -238,14 +261,22 @@ vim.g.vimtex_compiler_latexmk = {
     hooks = {},
     options = {'-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode'}
 }
-vim.g.vimtex_compiler_latexmk_engines = {['_'] = '-pdf', pdflatex = '-pdf', lualatex = '-lualatex', xelatex = '-xelatex'}
+vim.g.vimtex_compiler_latexmk_engines = {
+    ['_'] = '-pdf',
+    pdflatex = '-pdf',
+    lualatex = '-lualatex',
+    xelatex = '-xelatex'
+}
 
 -- fzf-lua
 minideps.add({source = 'ibhagwan/fzf-lua'})
 local fzf = require('fzf-lua')
 fzf.setup({
     winopts = {preview = {default = 'bat', layout = 'flex', horizontal = 'right:40%'}},
-    keymap = {builtin = {['<C-/>'] = 'toggle-preview', ['<C-p>'] = 'toggle-preview'}, fzf = {['shift-down'] = 'preview-page-down', ['shift-up'] = 'preview-page-up'}},
+    keymap = {
+        builtin = {['<C-/>'] = 'toggle-preview', ['<C-p>'] = 'toggle-preview'},
+        fzf = {['shift-down'] = 'preview-page-down', ['shift-up'] = 'preview-page-up'}
+    },
     files = {cmd = 'ag --hidden --ignore .git -g ""'},
     grep = {cmd = 'ag --vimgrep'}
 })
