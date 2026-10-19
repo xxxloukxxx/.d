@@ -1,11 +1,36 @@
-all : sudoers pack greetd bin zsh dotfiles suckless
+all : sudoers apt-testing pack greetd bin zsh dotfiles suckless
 
 @sudoers:
-  [ -f /etc/sudoers.d/cedric ] || { sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'; }
+  [ -f /etc/sudoers.d/cedric ] || { echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/cedric >/dev/null && sudo chmod 0440 /etc/sudoers.d/cedric; }
+
+@apt-testing:
+  sudo tee /etc/apt/preferences.d/99-testing > /dev/null << 'EOF'
+  Package: *
+  Pin: release a=stable
+  Pin-Priority: 900
+
+  Package: *
+  Pin: release a=testing
+  Pin-Priority: 90
+  EOF
+  sudo tee /etc/apt/sources.list.d/testing.sources > /dev/null << 'EOF'
+  Types: deb
+  URIs: http://deb.debian.org/debian/
+  Suites: testing
+  Components: main
+  Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+  EOF
+  sudo apt-get -y -qq update
 
 @pack:
   sudo apt-get -y -qq update && sudo apt-get -y -qq full-upgrade
-  sudo apt-get -y -qq install vim make git nnn gcc sudo build-essential meson cmake ninja-build locales-all curl wget fzf tmux silversearcher-ag universal-ctags npm xinit xorg xdotool numlockx x11-utils arandr libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev clang-format vim-gtk3 fonts-agave fonts-hack fonts-hack-otf fonts-hack-ttf fonts-hack-web greetd dunst pavucontrol pulseaudio pulseaudio-utils trash-cli picom libxcb-util-dev firefox-esr rsync just moc zsh zsh-autosuggestions zsh-syntax-highlighting
+  sudo apt-get -y -qq install \
+    build-essential meson cmake ninja-build gcc clang-format \
+    libreadline-dev libx11-dev libxinerama-dev libxft-dev libxrandr-dev libxcb-util-dev \
+    fonts-agave fonts-hack fonts-hack-otf fonts-hack-ttf fonts-hack-web \
+    vim vim-gtk3 git nnn sudo locales-all curl wget fzf tmux silversearcher-ag universal-ctags npm \
+    xinit xorg xdotool numlockx x11-utils arandr greetd dunst pavucontrol pulseaudio pulseaudio-utils \
+    trash-cli picom firefox-esr rsync just moc zsh zsh-autosuggestions zsh-syntax-highlighting
 
 @greetd:
   if ! grep -q startx /etc/greetd/config.toml; then \
@@ -16,42 +41,22 @@ all : sudoers pack greetd bin zsh dotfiles suckless
   sudo rsync -aqh .bin/* /usr/bin/
 
 @zsh:
-  sudo chsh -s /usr/bin/zsh cedric
+  [ "$(getent passwd cedric | cut -d: -f7)" = "/usr/bin/zsh" ] || sudo chsh -s /usr/bin/zsh cedric
 
 @dotfiles:
-  rsync -aqh .xinitrc ~/
-  rsync -aqh .vimrc ~/
-  rsync -aqh .zshrc ~/
-  rsync -aqh .gitconfig ~/
-  rsync -aqh .config ~/
-  rsync -aqh .moc ~/
+  rsync -aqh .xinitrc .vimrc .zshrc .gitconfig .config .moc ~/
   chmod 644 ~/.moc/config
 
 @suckless:
-  sudo make -s -k -C .dev/dmenu clean install
-  sudo make -s -k -C .dev/dwm clean install
-  sudo make -s -k -C .dev/dwmblocks clean install
-  sudo make -s -k -C .dev/nnn clean install
-  sudo make -s -k -C .dev/noice clean install
-  sudo make -s -k -C .dev/slock clean install
-  sudo make -s -k -C .dev/st clean install
-  sudo make -s -k -C .dev/fastcompmgr clean install
-  sudo make -s -k -C .dev/dmenu clean
-  sudo make -s -k -C .dev/dwm clean
-  sudo make -s -k -C .dev/dwmblocks clean
-  sudo make -s -k -C .dev/nnn clean
-  sudo make -s -k -C .dev/noice clean
-  sudo make -s -k -C .dev/slock clean
-  sudo make -s -k -C .dev/st clean
-  sudo make -s -k -C .dev/fastcompmgr clean
+  for proj in dmenu dwm dwmblocks nnn noice slock st fastcompmgr; do \
+    if [ -d ".dev/$proj" ]; then \
+      sudo make -s -k -C ".dev/$proj" clean install && sudo make -s -k -C ".dev/.dev/$proj" clean 2>/dev/null || sudo make -s -k -C ".dev/$proj" clean; \
+    fi \
+  done
 
 @get-dotfiles:
-  rsync -aqh ~/.xinitrc ./
-  rsync -aqh ~/.vimrc ./
-  rsync -aqh ~/.zshrc ./
-  rsync -aqh ~/.gitconfig ./
-  rsync -aqh ~/.config/dunst ./.config/
-  rsync -aqh ~/.config/nvim ./.config/
-  rsync -aqh ~/.moc ./
+  rsync -aqh ~/.xinitrc ~/.vimrc ~/.zshrc ~/.gitconfig ~/.moc ./
+  mkdir -p ./.config
+  rsync -aqh ~/.config/dunst ~/.config/nvim ./.config/
 
 # vi: set ts=2 sw=2: #
