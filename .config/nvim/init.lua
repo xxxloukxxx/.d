@@ -23,6 +23,8 @@ vim.opt.laststatus = 3
 vim.opt.shortmess:append('Ic')
 vim.opt.lazyredraw = true
 vim.opt.more = false
+vim.opt.updatetime = 250
+vim.opt.maxmempattern = 2000
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -172,7 +174,7 @@ require('mini.surround').setup()
 require('mini.ai').setup()
 
 require('mini.comment').setup()
-vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc', {remap = true})
+vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc<ESC>', {remap = true})
 
 local statusline = require('mini.statusline')
 local mode_map = {
@@ -338,3 +340,5 @@ require('marks').setup({
 minideps.add({source = 'denialofsandwich/sudo.nvim', depends = {'MunifTanjim/nui.nvim'}})
 require('sudo').setup({commands = true})
 
+-- vim-cool
+minideps.add({source = 'romainl/vim-cool'})
