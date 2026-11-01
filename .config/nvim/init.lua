@@ -25,6 +25,7 @@ vim.opt.lazyredraw = true
 vim.opt.more = false
 vim.opt.updatetime = 250
 vim.opt.maxmempattern = 2000
+vim.opt.foldlevelstart = 99
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -140,7 +141,7 @@ vim.api.nvim_create_autocmd('FileType', {
                         executable = 'latexmk',
                         args = {'-pdf', '-interaction=nonstopmode', '-synctex=1', '%f'},
                         onSave = false
-                    },
+                    }
                 }
             }
         }, {bufnr = args.buf})
@@ -154,6 +155,12 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.keymap.set('n', '<CR>', '<C-]>', {buffer = args.buf, silent = true})
         vim.keymap.set('n', '<BS>', '<C-t>', {buffer = args.buf, silent = true})
     end
+})
+
+-- Vimtex synchro pdf on save
+vim.api.nvim_create_autocmd("User", {
+    pattern = "VimtexEventCompileSuccess",
+    callback = function() vim.schedule(function() vim.fn["vimtex#view#view"]() end) end
 })
 
 -- Mini =======================================================================
@@ -171,6 +178,8 @@ require('mini.completion').setup()
 require('mini.basics').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
+require('mini.starter').setup()
+require('mini.notify').setup()
 require('mini.ai').setup()
 
 require('mini.comment').setup()
@@ -236,8 +245,10 @@ require('conform').setup({
         ['lua-format'] = {prepend_args = {'--column-limit=120'}},
         ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}},
         ['mbake'] = {command = "mbake", args = {'format', '$FILENAME'}, stdin = false}
-    }
+    },
+    format_on_save = {timeout_ms = 200, lsp_fallback = true}
 })
+
 vim.api.nvim_create_user_command('Format', function(args)
     local range = nil
     if args.count ~= -1 then
@@ -252,6 +263,7 @@ vim.keymap.set({'n', 'v'}, '<Leader>f', ':Format<CR>', {silent = true})
 -- Vimtex
 minideps.add({source = 'lervag/vimtex', checkout = 'v2.15'})
 vim.g.vimtex_view_general_viewer = 'zathura'
+vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_open_on_warning = 0
 vim.g.vimtex_quickfix_mode = 0
 vim.g.vimtex_compiler_latexmk = {
@@ -261,13 +273,21 @@ vim.g.vimtex_compiler_latexmk = {
     continuous = 1,
     executable = 'latexmk',
     hooks = {},
-    options = {'-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode'}
+    options = {'-pdf', '-file-line-error', '-synctex=1', '-interaction=nonstopmode'}
 }
 vim.g.vimtex_compiler_latexmk_engines = {
-    ['_'] = '-pdf',
+    ['_'] = '-pdflatex',
     pdflatex = '-pdf',
     lualatex = '-lualatex',
     xelatex = '-xelatex'
+}
+
+vim.g.vimtex_fold_enabled = 1
+vim.g.vimtex_fold_types = {
+    environments = {
+        enabled = 1,
+        whitelist = {} -- Vide = accepte et plie TOUS les environnements
+    }
 }
 
 -- fzf-lua
