@@ -21,10 +21,7 @@ vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.shortmess:append('Ic')
-vim.opt.lazyredraw = true
-vim.opt.more = false
 vim.opt.updatetime = 250
-vim.opt.maxmempattern = 2000
 vim.opt.foldlevelstart = 99
 
 -- Mappings ===================================================================
@@ -177,9 +174,8 @@ require('mini.deps').setup({path = {package = path_package}})
 require('mini.completion').setup()
 require('mini.basics').setup()
 require('mini.pairs').setup()
+require('mini.icons').setup()
 require('mini.surround').setup()
-require('mini.starter').setup()
-require('mini.notify').setup()
 require('mini.ai').setup()
 
 require('mini.comment').setup()
@@ -246,7 +242,7 @@ require('conform').setup({
         ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}},
         ['mbake'] = {command = "mbake", args = {'format', '$FILENAME'}, stdin = false}
     },
-    format_on_save = {timeout_ms = 200, lsp_fallback = true}
+    format_on_save = {timeout_ms = 500, lsp_fallback = true}
 })
 
 vim.api.nvim_create_user_command('Format', function(args)
@@ -261,7 +257,8 @@ end, {range = true})
 vim.keymap.set({'n', 'v'}, '<Leader>f', ':Format<CR>', {silent = true})
 
 -- Vimtex
-minideps.add({source = 'lervag/vimtex', checkout = 'v2.15'})
+-- minideps.add({source = 'lervag/vimtex', checkout = 'v2.15'})
+minideps.add({source = 'lervag/vimtex'})
 vim.g.vimtex_view_general_viewer = 'zathura'
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_open_on_warning = 0

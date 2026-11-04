@@ -18,7 +18,7 @@ start() {
 # start fastcompmgr
 start dunst
 start dwmblocks
-start vesktop
+start vesktop -m
 
 sleep 1 && exec dwm
 
