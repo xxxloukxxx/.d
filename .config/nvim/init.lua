@@ -24,6 +24,7 @@ vim.opt.shortmess:append('Ic')
 vim.opt.updatetime = 250
 vim.opt.foldlevelstart = 99
 vim.opt.winborder = "rounded"
+vim.opt.swapfile = false
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -65,7 +66,7 @@ vim.keymap.set('n', '<Leader>i', 'mK')
 vim.keymap.set('n', '<Leader>o', '`K')
 vim.keymap.set('n', "<leader><leader>c", "<cmd>ToggleQuickfix<CR>", {})
 
--- Commandes perso ============================================================
+-- Cmd perso ==================================================================
 vim.api.nvim_create_user_command('CdCurrent', function()
     local path = vim.api.nvim_buf_get_name(0)
     if path ~= '' and vim.bo.buftype == '' and not path:find('^term://') then
@@ -122,30 +123,6 @@ vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'}
     callback = function() if vim.wo.number then vim.wo.relativenumber = false end end
 })
 
--- Texlab
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = {'tex', 'plaintex', 'bib'},
-    callback = function(args)
-        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        vim.lsp.start({
-            name = 'texlab',
-            cmd = {'texlab'},
-            root_dir = vim.fs.root(args.buf, {'Makefile', 'main.tex', '.git'}) or vim.fn.getcwd(),
-            settings = {
-                texlab = {
-                    chktex = {onOpenAndSave = false},
-                    diagnosticsDelay = 200,
-                    build = {
-                        executable = 'latexmk',
-                        args = {'-pdf', '-interaction=nonstopmode', '-synctex=1', '%f'},
-                        onSave = false
-                    }
-                }
-            }
-        }, {bufnr = args.buf})
-    end
-})
-
 -- help keymap
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'help',
@@ -155,24 +132,42 @@ vim.api.nvim_create_autocmd('FileType', {
     end
 })
 
--- Vimtex synchro pdf on save
-vim.api.nvim_create_autocmd("User", {
-    pattern = "VimtexEventCompileSuccess",
-    callback = function() vim.schedule(function() vim.fn["vimtex#view#view"]() end) end
+-- LSP =========================================================================
+-- Configuration Texlab (LSP natif)
+vim.lsp.config['texlab'] = {
+    cmd = {'texlab'},
+    filetypes = {'tex', 'plaintex', 'bib'},
+    root_markers = {'.git', 'Makefile', 'main.tex'},
+    settings = {
+        texlab = {
+            build = {executable = '', args = {}, onSave = false},
+            diagnostics = {ignoredPatterns = {}},
+            chktex = {onOpenAndSave = false, onEdit = false},
+            forwardSearch = {executable = 'zathura', args = {'--synctex-forward', '%l:1:%f', '%p'}}
+        }
+    }
+}
+vim.lsp.enable('texlab')
+
+vim.lsp.enable('lua_ls')
+
+-- Gestion native des plugins avec vim.pack.add ================================
+vim.pack.add({
+    {src = 'https://github.com/nvim-mini/mini.nvim'}, --
+    {src = 'https://github.com/stevearc/conform.nvim'}, --
+    {src = 'https://github.com/lervag/vimtex'}, --
+    {src = 'https://github.com/ibhagwan/fzf-lua'}, --
+    {src = 'https://github.com/mbbill/undotree'}, --
+    {src = 'https://github.com/mg979/vim-visual-multi'}, --
+    {src = 'https://github.com/folke/tokyonight.nvim'}, --
+    {src = 'https://github.com/stevearc/oil.nvim'}, --
+    {src = 'https://github.com/chentoast/marks.nvim'}, --
+    {src = 'https://github.com/MunifTanjim/nui.nvim'}, --
+    {src = 'https://github.com/denialofsandwich/sudo.nvim'}, --
+    {src = 'https://github.com/romainl/vim-cool'}
 })
 
--- Mini =======================================================================
-local path_package = vim.fn.stdpath('data') .. '/site/'
-local mini_path = path_package .. 'pack/deps/start/mini.nvim'
-
-if not vim.loop.fs_stat(mini_path) then
-    local clone_cmd = {'git', 'clone', '--filter=blob:none', 'https://github.com/nvim-mini/mini.nvim', mini_path}
-    vim.fn.system(clone_cmd)
-    vim.cmd('packadd mini.nvim | helptags ALL')
-end
-
-require('mini.deps').setup({path = {package = path_package}})
-require('mini.completion').setup()
+-- Mini Setup =================================================================
 require('mini.basics').setup()
 require('mini.pairs').setup()
 require('mini.icons').setup()
@@ -219,13 +214,12 @@ statusline.setup({
     }
 })
 
--- Plugins ============================================================================================
-local minideps = require('mini.deps')
+-- Plugins Configuration ======================================================
 
 -- Conform
-minideps.add({source = 'stevearc/conform.nvim'})
 require('conform').setup({
     formatters_by_ft = {
+        -- sudo luarocks install --server=https://luarocks.org/dev luaformatter
         lua = {'lua-format'},
         tex = {'latexindent'},
         javascript = {'prettier'},
@@ -257,8 +251,6 @@ end, {range = true})
 vim.keymap.set({'n', 'v'}, '<Leader>f', ':Format<CR>', {silent = true})
 
 -- Vimtex
--- minideps.add({source = 'lervag/vimtex', checkout = 'v2.15'})
-minideps.add({source = 'lervag/vimtex'})
 vim.g.vimtex_view_general_viewer = 'zathura'
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_open_on_warning = 0
@@ -278,17 +270,10 @@ vim.g.vimtex_compiler_latexmk_engines = {
     lualatex = '-lualatex',
     xelatex = '-xelatex'
 }
-
 vim.g.vimtex_fold_enabled = 1
-vim.g.vimtex_fold_types = {
-    environments = {
-        enabled = 1,
-        whitelist = {} -- Vide = accepte et plie TOUS les environnements
-    }
-}
+vim.g.vimtex_fold_types = {environments = {enabled = 1, whitelist = {}}}
 
 -- fzf-lua
-minideps.add({source = 'ibhagwan/fzf-lua'})
 local fzf = require('fzf-lua')
 fzf.setup({
     winopts = {preview = {default = 'bat', layout = 'flex', horizontal = 'right:40%'}},
@@ -308,21 +293,15 @@ vim.keymap.set('n', '<Leader><Leader>p', function() fzf.registers({winopts = {pr
 vim.keymap.set('n', '<Leader><Leader>o', fzf.marks)
 
 -- undotree
-minideps.add({source = 'mbbill/undotree'})
 vim.keymap.set('n', '<Leader>u', '<cmd>UndotreeToggle<CR>')
 
--- vim-visual-multi
-minideps.add({source = 'mg979/vim-visual-multi'})
-
 -- colorscheme
-minideps.add('folke/tokyonight.nvim')
 require('tokyonight').setup({style = 'night', transparent = false})
 vim.cmd.colorscheme('tokyonight')
 vim.api.nvim_set_hl(0, 'WinSeparator', {fg = '#7aa2f7', bold = true})
 vim.api.nvim_set_hl(0, "Visual", {bg = "#d19a66", fg = "#282c34"})
 
--- oil.nvim
-minideps.add('stevearc/oil.nvim')
+-- Oil.nvim
 require('oil').setup({
     keymaps = {
         ["gd"] = {
@@ -342,7 +321,6 @@ require('oil').setup({
 vim.keymap.set('n', '<Leader>e', ':Oil<CR>', {silent = true})
 
 -- marks.nvim
-minideps.add('chentoast/marks.nvim')
 require('marks').setup({
     default_mappings = true,
     builtin_marks = {".", "<", ">", "^"},
@@ -354,8 +332,4 @@ require('marks').setup({
 })
 
 -- sudo.nvim
-minideps.add({source = 'denialofsandwich/sudo.nvim', depends = {'MunifTanjim/nui.nvim'}})
 require('sudo').setup({commands = true})
-
--- vim-cool
-minideps.add({source = 'romainl/vim-cool'})
