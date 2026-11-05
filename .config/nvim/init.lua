@@ -23,6 +23,7 @@ vim.opt.laststatus = 3
 vim.opt.shortmess:append('Ic')
 vim.opt.updatetime = 250
 vim.opt.foldlevelstart = 99
+vim.opt.winborder = "rounded"
 
 -- Mappings ===================================================================
 vim.g.mapleader = ' '
@@ -177,7 +178,6 @@ require('mini.pairs').setup()
 require('mini.icons').setup()
 require('mini.surround').setup()
 require('mini.ai').setup()
-
 require('mini.comment').setup()
 vim.keymap.set({'n', 'v'}, '<Leader>/', 'gcc<ESC>', {remap = true})
 
@@ -198,7 +198,7 @@ local mode_map = {
 
 statusline.setup({
     set_vim_settings = true,
-    use_icons = false,
+    use_icons = true,
     content = {
         active = function()
             local mode_code = vim.api.nvim_get_mode().mode
