@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx = 3;       /* border pixel of windows */
+static const unsigned int borderpx = 2;       /* border pixel of windows */
 static const unsigned int gappx    = 0;       /* gap pixel between windows */
 static const unsigned int snap     = 16;      /* snap pixel */
 static const int showbar           = 1;       /* 0 means no bar */
@@ -23,8 +23,8 @@ static const char col_gray2[] = "#141416";
 static const char col_gray3[] = "#666666";
 static const char col_gray4[] = "#ffffff";
 // static const char col_cyan[]  = "#090c2c";
-static const char col_cyan[]  = "#090c4c";
-static const char col_red[]   = "#aa0000";
+static const char col_cyan[] = "#090c4c";
+static const char col_red[]  = "#aa0000";
 
 static const char* colors[][3] = {
     /*               fg         bg         border   */
@@ -77,16 +77,17 @@ static const Layout layouts[] = {
     }
 
 /* commands */
-static char dmenumon[2]           = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char* dmenucmd[]     = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
-static const char* termcmd[]      = { "st", NULL };
-static const char* vimcmd[]       = { "st", "vim", NULL };
-static const char* dpowercmd[]    = { "dpower", NULL };
-static const char* dmocpcmd[]     = { "dmocp", NULL };
-static const char* dmocpinfo[]    = { "dmocpinfo", NULL };
-static const char* upvol[]        = { "vol.sh", "up", NULL };
-static const char* downvol[]      = { "vol.sh", "dn", NULL };
-static const char* mutevol[]      = { "vol.sh", "mute", NULL };
+static char dmenumon[2]        = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char* dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
+static const char* termcmd[]   = { "st", NULL };
+static const char* vimcmd[]    = { "st", "vim", NULL };
+static const char* dpowercmd[] = { "dpower", NULL };
+static const char* dmocpcmd[]  = { "dmocp", NULL };
+static const char* dmocpinfo[] = { "dmocpinfo", NULL };
+static const char* upvol[]     = { "vol.sh", "up", NULL };
+static const char* downvol[]   = { "vol.sh", "dn", NULL };
+static const char* mutevol[]   = { "vol.sh", "mute", NULL };
+static const char* webcmd[]    = { "google-chrome", NULL };
 /* static const char spadname[]      = "spad"; */
 /* static const char* spadcmd[]      = { "st", "-t", spadname, NULL }; */
 /* static const char* spcalccmd[]    = { "st", "-t", spadname, "-g", "50x20", "-e", "bc", "-ql", NULL }; */
@@ -95,8 +96,9 @@ static const char* flameshotcmd[] = { "flameshot", "gui", NULL };
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
     /* modifier, key, function, argument */
-    { MODKEY, XK_d, spawn, { .v = dmenucmd } },     //
-    { MODKEY, XK_Return, spawn, { .v = termcmd } }, //
+    { MODKEY, XK_d, spawn, { .v = dmenucmd } },           //
+    { MODKEY, XK_Return, spawn, { .v = termcmd } },       //
+    { MODKEY | ShiftMask, XK_g, spawn, { .v = webcmd } }, //
     // { MODKEY, XK_BackSpace, spawn, { .v = vimcmd } },                //
     { MODKEY | ShiftMask, XK_BackSpace, spawn, { .v = dpowercmd } }, //
     // { MODKEY, XK_m, spawn, { .v = dmocpcmd } },                      //
@@ -119,7 +121,7 @@ static const Key keys[] = {
 
     { MODKEY | ShiftMask, XK_Return, zoom, { 0 } }, //
 
-    { MODKEY, XK_f, setlayout, { 0 } },              //
+    { MODKEY, XK_f, setlayout, { 0 } }, //
     // { MODKEY, XK_i, togglefloating, { 0 } },              //
     { MODKEY | ShiftMask, XK_c, killclient, { 0 } }, //
 

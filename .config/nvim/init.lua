@@ -147,9 +147,35 @@ vim.lsp.config['texlab'] = {
         }
     }
 }
-vim.lsp.enable('texlab')
 
+-- Configuration Clangd (C et C++)
+vim.lsp.config['clangd'] = {
+    cmd = {'clangd'},
+    filetypes = {'c', 'cpp', 'objc', 'objcpp'},
+    root_markers = {'.git', 'Makefile', 'CMakeLists.txt', 'compile_commands.json'}
+}
+
+-- Configuration Pyright (Python)
+vim.lsp.config['pyright'] = {
+    cmd = {'pyright-langserver', '--stdio'},
+    filetypes = {'python'},
+    root_markers = {'.git', 'pyproject.toml', 'setup.py', 'requirements.txt'}
+}
+
+vim.lsp.enable('texlab')
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('clangd') -- Pour C et C++
+vim.lsp.enable('pyright') -- Pour Python
+
+-- Association globale et propre de l'omnifunc LSP pour mini.completion dès qu'un LSP démarre
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args) vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp' end
+})
+-- Configuration globale des diagnostics
+vim.diagnostic.config({
+    virtual_text = true -- Désactive le texte en fin de ligne si tu préfères
+    -- float = {border = "rounded", source = "always"}
+})
 
 -- Gestion native des plugins avec vim.pack.add ================================
 vim.pack.add({
@@ -214,6 +240,8 @@ statusline.setup({
     }
 })
 
+require('mini.completion').setup({window = {info = {border = 'rounded'}, signature = {border = 'rounded'}}})
+
 -- Plugins Configuration ======================================================
 
 -- Conform
@@ -229,6 +257,9 @@ require('conform').setup({
         json = {'prettier'},
         yaml = {'prettier'},
         markdown = {'prettier'},
+        c = {'clang-format'},
+        cpp = {'clang-format'},
+        python = {'black', 'isort'}, -- black pour le code, isort pour trier les imports
         make = {'mbake'}
     },
     formatters = {
@@ -236,7 +267,7 @@ require('conform').setup({
         ['latexindent'] = {args = {'-m', '-c', '/tmp/', '-'}},
         ['mbake'] = {command = "mbake", args = {'format', '$FILENAME'}, stdin = false}
     },
-    format_on_save = {timeout_ms = 500, lsp_fallback = true}
+    format_on_save = {timeout_ms = 1000, lsp_fallback = true}
 })
 
 vim.api.nvim_create_user_command('Format', function(args)

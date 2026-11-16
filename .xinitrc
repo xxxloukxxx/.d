@@ -6,7 +6,7 @@ xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 
 
 hsetroot -solid black
 
-feh ~/.w/flower2.jpg --bg-fill
+feh ~/.w/flower3.jpg --bg-fill
 
 start() {
 	if ! pgrep -f $1; then
@@ -20,6 +20,7 @@ start dunst
 start dwmblocks
 start vesktop -m
 
+# sleep 1 && exec nwm
 sleep 1 && exec dwm
 
 # vim: set ft=bash :

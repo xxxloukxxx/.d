@@ -19,7 +19,7 @@
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
 #define BLOCKS(X)          \
     X ("", "vol.sh", 0, 5) \
-    X ("", "date '+%d-%m %H:%M'", 25, 10)
+    X ("", "date '+%d-%m %H:%M'", 5, 10)
 
 #endif // CONFIG_H
 
